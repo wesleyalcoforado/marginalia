@@ -4,7 +4,7 @@
 
 use super::*;
 use crate::about;
-use gpui::{img, Bounds, Render, TitlebarOptions, WindowBounds, WindowOptions};
+use gpui::{Bounds, Render, TitlebarOptions, WindowBounds, WindowOptions};
 
 /// O conteudo da janela Sobre (uma entidade na janela propria dela).
 pub(super) struct ViewAbout {
@@ -12,10 +12,10 @@ pub(super) struct ViewAbout {
 }
 
 impl Render for ViewAbout {
-    fn render(&mut self, _: &mut Window, cx: &mut Context<Self>) -> impl IntoElement {
+    fn render(&mut self, window: &mut Window, cx: &mut Context<Self>) -> impl IntoElement {
         let c = about::content();
         let t = crate::theme::current();
-        let app_icon = img(crate::icons::APP_ICON).size(px(96.0)).flex_none();
+        let app_icon = crate::icons::app_icon(window, 96.0);
         let link = div()
             .id("sobre-link")
             .cursor_pointer()

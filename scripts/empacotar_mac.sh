@@ -1,6 +1,6 @@
 #!/bin/sh
 # Monta dist/Marginalia.app a partir do build de release (macOS).
-# Uso: scripts/empacotar_mac.sh [icone.png]   (padrao: crates/ui/assets/app/marginalia.png, 1024x1024)
+# Uso: scripts/empacotar_mac.sh [icone.png]   (padrao: crates/ui/assets/app/marginalia-macos.png, 1024x1024)
 # A PDFium vai em Contents/Frameworks, onde o app a procura (docs/pdfium.md).
 set -eu
 cd "$(dirname "$0")/.."
@@ -17,7 +17,7 @@ cp target/release/marginalia "$APP/Contents/MacOS/marginalia"
 cp vendor/pdfium/lib/libpdfium.dylib "$APP/Contents/Frameworks/"
 cp vendor/pdfium/LICENSE "$APP/Contents/Frameworks/LICENSE-pdfium.txt"
 
-ICONE=${1:-crates/ui/assets/app/marginalia.png}
+ICONE=${1:-crates/ui/assets/app/marginalia-macos.png}
 ICONE_XML=""
 if [ -f "$ICONE" ]; then
   SET=$(mktemp -d)/icone.iconset

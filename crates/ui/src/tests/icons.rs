@@ -46,3 +46,20 @@ fn variants_and_files_match() {
         ALL.iter().map(|i| i.file().strip_prefix("icons/").unwrap().to_string()).collect();
     assert_eq!(in_disk, used);
 }
+
+#[test]
+fn app_icon_picks_the_size_that_covers_the_physical_pixels() {
+    // 96 px logicos: escala 1 -> 96, 1.25 -> 120, 1.5 -> 144, 2 -> 192 (retina), 3 -> 288.
+    assert_eq!(app_icon_path(96.0, 1.0), "app/marginalia-96.png");
+    assert_eq!(app_icon_path(96.0, 1.25), "app/marginalia-120.png");
+    assert_eq!(app_icon_path(96.0, 1.5), "app/marginalia-144.png");
+    assert_eq!(app_icon_path(96.0, 2.0), "app/marginalia-192.png");
+    assert_eq!(app_icon_path(96.0, 3.0), "app/marginalia-288.png");
+    // entre dois tamanhos sobe para o maior (reduzir fica melhor que ampliar); acima de todos, o maior.
+    assert_eq!(app_icon_path(96.0, 1.1), "app/marginalia-120.png");
+    assert_eq!(app_icon_path(96.0, 4.0), "app/marginalia-288.png");
+    // todo caminho devolvido existe no AssetSource
+    for s in [1.0, 1.25, 1.5, 2.0, 3.0] {
+        assert!(Assets.load(app_icon_path(96.0, s)).unwrap().is_some());
+    }
+}

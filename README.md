@@ -41,7 +41,7 @@ cargo run -p ui -- --vault <pasta-do-vault> [fonte]
   `scripts/empacotar_mac.sh` monta `dist/Marginalia.app` (PDFium em `Contents/Frameworks`, assinatura ad-hoc);
   `powershell -ExecutionPolicy Bypass -File scripts\empacotar_win.ps1` gera `dist\Marginalia-<versão>-win-x64.zip`
   (portátil: `marginalia.exe` + `pdfium.dll`). Ao empurrar uma tag `v*`, o workflow `release.yml` faz os dois e anexa os
-  zips a uma release do GitHub. O ícone é `crates/ui/assets/app/marginalia.png` (o `.icns` do macOS sai dele no empacotamento); o `marginalia.ico` do Windows, embutido no `.exe` pelo `build.rs`, é gerado por `scripts/gerar_icone_ico.py` (macOS) quando o PNG mudar. Sem notarização, o macOS bloqueia o app baixado (botão direito → Abrir).
+  zips a uma release do GitHub. O ícone mestre é `crates/ui/assets/app/marginalia.png`; `scripts/gerar_icones.py` (precisa do ImageMagick) gera dele a versão sem margem para o `.icns` do macOS, os tamanhos da tela de abertura e do Sobre e o `marginalia.ico` do Windows (embutido no `.exe` pelo `build.rs`). Sem notarização, o macOS bloqueia o app baixado (botão direito → Abrir).
 
 ## A janela
 
