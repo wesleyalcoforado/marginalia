@@ -5,3 +5,4 @@ target/
 vendor/
 __pycache__/
 docs/superpowers/
+dist/

@@ -182,11 +182,17 @@ pub fn icon(i: Icon, size: f32, color: impl Into<Hsla>) -> impl IntoElement {
     svg().path(i.file()).size(side).flex_none().text_color(color)
 }
 
-/// Fonte de assets do app: serve os icones embutidos.
+/// Caminho do icone do app (o mesmo PNG do pacote) no `AssetSource`, para o `img()` da tela de abertura.
+pub const APP_ICON: &str = "app/marginalia.png";
+
+/// Fonte de assets do app: serve os icones embutidos e o icone do app.
 pub struct Assets;
 
 impl AssetSource for Assets {
     fn load(&self, path: &str) -> Result<Option<Cow<'static, [u8]>>> {
+        if path == APP_ICON {
+            return Ok(Some(Cow::Borrowed(include_bytes!("../assets/app/marginalia.png"))));
+        }
         Ok(ALL.iter().find(|i| i.file() == path).map(|i| Cow::Borrowed(i.bytes())))
     }
 
