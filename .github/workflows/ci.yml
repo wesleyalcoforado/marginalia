@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  testes:
+    name: Testes (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: 1.100.0
+
+      - uses: Swatinem/rust-cache@v2
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # O build do gpui compila shaders: no macOS precisa da toolchain Metal.
+      - name: Toolchain Metal (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          if ! xcrun -f metal >/dev/null 2>&1; then
+            xcodebuild -downloadComponent MetalToolchain
+          fi
+          xcrun -f metal
+
+      # Os testes de PDF precisam da PDFium (vendor/ nao e versionado).
+      - name: Baixar PDFium
+        run: python scripts/baixar_pdfium.py
+
+      - name: Testes
+        run: cargo test --workspace --no-fail-fast
+
+  scripts:
+    name: Scripts Python
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 -m unittest discover -s scripts -p "test_*.py"

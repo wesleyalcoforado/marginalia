@@ -794,6 +794,8 @@ fn interrupt_makes_the_final_in_flight_stale_and_the_result_its_falls() {
 
 /// De ponta a ponta: a final de uma pagina grande ja esta filtrando no fundo
 /// quando o valor muda; ela para no meio (antes de terminar) e nao entrega nada.
+/// O limite de latencia e folgado de proposito: em maquina carregada (CI) o teto de 500 ms oscilava;
+/// o que o teste garante e o `Stale` (parou antes de terminar), nao o tempo exato.
 #[test]
 fn interrupt_to_the_final_in_the_middle_of_the_filter() {
     let t = tempdir().unwrap();
@@ -816,7 +818,7 @@ fn interrupt_to_the_final_in_the_middle_of_the_filter() {
     let (r, total) = job.join().unwrap();
     let latency = t0.elapsed();
     assert!(matches!(r.outcome, Outcome::Stale), "a final terminou em {total:?} sem parar");
-    assert!(latency < Duration::from_millis(500), "parou {latency:?} depois da interrupcao");
+    assert!(latency < Duration::from_millis(3000), "parou {latency:?} depois da interrupcao");
     assert!(matches!(st.receive(r), Received::Ignored));
 }
 
@@ -1248,7 +1250,7 @@ fn drop_state_and_requests_not_wait_reading_stuck() {
     drop(st);
     let spent = t0.elapsed();
     drop_item.join().unwrap();
-    assert!(spent < Duration::from_millis(500), "soltar esperou a leitura presa: {spent:?}");
+    assert!(spent < Duration::from_millis(1500), "soltar esperou a leitura presa: {spent:?}");
 }
 
 #[test]

@@ -1,0 +1,4 @@
+# Fim de linha LF em todo texto, em qualquer sistema: os arquivos de referencia dos testes
+# (menus, ajuda, formato em disco) sao comparados byte a byte.
+* text=auto eol=lf
+*.ps1 text eol=crlf
