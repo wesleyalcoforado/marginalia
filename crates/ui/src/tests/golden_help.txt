@@ -1,0 +1,48 @@
+## Navegar
+Imagem anterior / seguinte|← →
+Página anterior / seguinte|PageUp PageDown
+Abrir fonte|⌘O
+Abrir vault|⇧⌘V
+Seletor de vault: escolher, abrir, fechar|↑ ↓ ↵ Esc
+Seletor: abrir pasta, criar vault aqui|o n
+## Imagem
+Mover|W A S D ou arrastar
+Zoom + / − / ajustar|+ − 0
+Girar à esquerda / direita|⌘L ⌘R
+Painel de ajustes|⌘F
+Brilho − / +|⌘[ ⌘]
+Contraste − / +|⇧⌘[ ⇧⌘]
+Inverter · cinza · limiar|⌘I ⌘G ⌘T
+Restaurar ajustes|⇧⌘R
+Caixa numérica de uma barra|↑ ↓ ↵ Esc
+## Grifos
+Caixa|botão ou ⇧ arrastar
+Seta|botão ou ⌥ arrastar
+Seta curta|⌥ clique
+Selecionar|clique no grifo
+Apagar grifo|⌫ ⌦
+Desfazer apagar|⌘Z
+Desligar a ferramenta, soltar o grifo|Esc
+## Nota rápida
+Ir para a nota|⌘K /
+Voltar à imagem|⇧⌘K Esc
+Nova linha|↵
+Finalizar|⌘↵
+Andar pelo texto|← → ↑ ↓ Home End
+Apagar|⌫ ⌦
+Selecionar tudo, recortar, copiar, colar|⌘A ⌘X ⌘C ⌘V
+Começar com [] cria tarefa|[]
+Etiquetar: #palavra no texto|#
+## Gavetas
+Notas / fontes / tarefas|⌘1 ⌘2 ⌘3
+Buscar no texto das notas|clique na busca
+Escolher linha|↑ ↓
+Abrir (nota, tarefa, fonte)|↵
+Excluir nota ou tarefa (pede confirmação)|⌫
+Marcar tarefa feita|x espaço
+Fechar gaveta|Esc
+## Janela
+Barra de ferramentas|menu Exibir
+Configurações|⌘,
+Esta ajuda|?
+Sair|⌘Q

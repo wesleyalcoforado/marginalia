@@ -1,0 +1,7 @@
+target/
+.superpowers/
+.DS_Store
+.claude/
+vendor/
+__pycache__/
+docs/superpowers/

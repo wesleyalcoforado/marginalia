@@ -1,0 +1,102 @@
+Marginalia|about|Sobre o Marginalia|
+Marginalia|---
+Marginalia|settings|Configurações…|cmd-,
+Marginalia|---
+Marginalia|exit|Sair do Marginalia|cmd-q
+Arquivo|open_source|Abrir fonte…|cmd-o
+Arquivo|open_vault|Abrir vault…|cmd-shift-v
+Arquivo|---
+Arquivo|close_source|Fechar fonte|
+Editar|undo|Desfazer|cmd-z
+Editar|---
+Editar|cut|Recortar|cmd-x
+Editar|copy|Copiar|cmd-c
+Editar|paste|Colar|cmd-v
+Editar|select_all|Selecionar tudo|cmd-a
+Editar|---
+Editar|delete_highlight|Excluir grifo|backspace
+Editar|delete_item|Excluir nota/tarefa…|
+Exibir|notes|Notas|cmd-1
+Exibir|sources|Fontes|cmd-2
+Exibir|tasks|Tarefas|cmd-3
+Exibir|---
+Exibir|image_adjustments|Ajustes de imagem|cmd-f
+Exibir|tools|Barra de ferramentas|
+Exibir|---
+Exibir|zoom_up|Aumentar zoom|+
+Exibir|zoom_down|Diminuir zoom|-
+Exibir|adjust|Ajustar à janela|0
+Navegar|previous|Imagem anterior|left
+Navegar|next|Próxima imagem|right
+Navegar|---
+Navegar|focus_quick_note|Focar nota|cmd-k
+Navegar|focus_image|Focar imagem|cmd-shift-k
+Imagem|rotate_left|Girar à esquerda|cmd-l
+Imagem|rotate_right|Girar à direita|cmd-r
+Imagem|---
+Imagem|highlight_box|Grifo caixa|
+Imagem|arrow_highlight|Grifo seta|
+Imagem|highlight_colors|Cor dos grifos|
+Imagem|---
+Imagem|brightness_up|Aumentar brilho|cmd-]
+Imagem|brightness_down|Diminuir brilho|cmd-[
+Imagem|contrast_up|Aumentar contraste|cmd-shift-]
+Imagem|contrast_down|Diminuir contraste|cmd-shift-[
+Imagem|sharpness_up|Aumentar nitidez|
+Imagem|sharpness_down|Diminuir nitidez|
+Imagem|highpass_up|Aumentar passa-alta|
+Imagem|highpass_down|Diminuir passa-alta|
+Imagem|threshold_up|Aumentar limiar|
+Imagem|threshold_down|Diminuir limiar|
+Imagem|---
+Imagem|invert|Inverter|cmd-i
+Imagem|gray|Tons de cinza|cmd-g
+Imagem|threshold|Limiar|cmd-t
+Imagem|---
+Imagem|restore|Restaurar ajustes|cmd-shift-r
+Ajuda|help|Ajuda|?
+dica|about|Sobre o Marginalia
+dica|exit|Sair do Marginalia (⌘Q)
+dica|open_source|Abrir fonte (⌘O)
+dica|open_vault|Abrir vault (⇧⌘V)
+dica|close_source|Fechar fonte
+dica|undo|Desfazer (⌘Z)
+dica|cut|Recortar (⌘X)
+dica|copy|Copiar (⌘C)
+dica|paste|Colar (⌘V)
+dica|select_all|Selecionar tudo (⌘A)
+dica|delete_highlight|Excluir grifo (⌫)
+dica|delete_item|Excluir nota/tarefa
+dica|notes|Notas (⌘1)
+dica|sources|Fontes (⌘2)
+dica|tasks|Tarefas (⌘3)
+dica|image_adjustments|Ajustes de imagem (⌘F)
+dica|zoom_up|Aumentar zoom (+)
+dica|zoom_down|Diminuir zoom (−)
+dica|adjust|Ajustar à janela (0)
+dica|previous|Imagem anterior (←)
+dica|next|Próxima imagem (→)
+dica|focus_quick_note|Focar nota (⌘K)
+dica|focus_image|Focar imagem (⇧⌘K)
+dica|brightness_up|Aumentar brilho (⌘])
+dica|brightness_down|Diminuir brilho (⌘[)
+dica|contrast_up|Aumentar contraste (⇧⌘])
+dica|contrast_down|Diminuir contraste (⇧⌘[)
+dica|sharpness_up|Aumentar nitidez
+dica|sharpness_down|Diminuir nitidez
+dica|highpass_up|Aumentar passa-alta
+dica|highpass_down|Diminuir passa-alta
+dica|threshold_up|Aumentar limiar
+dica|threshold_down|Diminuir limiar
+dica|invert|Inverter (⌘I)
+dica|gray|Tons de cinza (⌘G)
+dica|threshold|Limiar (⌘T)
+dica|restore|Restaurar ajustes (⇧⌘R)
+dica|rotate_left|Girar à esquerda (⌘L)
+dica|rotate_right|Girar à direita (⌘R)
+dica|highlight_box|Grifo caixa
+dica|arrow_highlight|Grifo seta
+dica|highlight_colors|Cor dos grifos
+dica|tools|Barra de ferramentas
+dica|help|Ajuda (?)
+dica|settings|Configurações (⌘,)

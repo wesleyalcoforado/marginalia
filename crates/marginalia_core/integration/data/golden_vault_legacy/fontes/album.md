@@ -1,0 +1,4 @@
+---
+nome: album
+tipo: pasta
+---

@@ -1,0 +1,52 @@
+[package]
+name = "marginalia_core"
+version = "0.1.0"
+edition = "2021"
+
+[[test]]
+name = "disk_format"
+path = "integration/disk_format.rs"
+
+[[test]]
+name = "decode"
+path = "integration/decode.rs"
+
+[[test]]
+name = "extra"
+path = "integration/extra.rs"
+
+[[test]]
+name = "prefetch"
+path = "integration/prefetch.rs"
+
+[[test]]
+name = "source"
+path = "integration/source.rs"
+
+[[test]]
+name = "vault"
+path = "integration/vault.rs"
+
+[dependencies]
+chrono = "0.4"
+unicode-normalization = "0.1"
+thiserror = "1"
+texts = { path = "../texts" }
+dirs = "5"
+serde = { version = "1", features = ["derive"] }
+serde_yaml = "0.9"
+serde_json = "1"
+image = { version = "0.25", default-features = false, features = ["jpeg", "png", "tiff"] }
+rayon = "1"
+zip = { version = "2", default-features = false, features = ["deflate"] }
+natord = "1.0.9"
+tiff = "0.9.1"
+pdfium-render = { version = "=0.8.30", default-features = false, features = ["pdfium_latest"] }
+weezl = "0.1.12"
+flate2 = "1.1.11"
+
+[dev-dependencies]
+tempfile = "3.20"
+# So a referencia dos testes (`apply_referencia`): o desfoque de `filters` tem a mesma
+# aritmetica do imageproc, feita a mao por faixas.
+imageproc = { version = "0.25", default-features = false, features = ["rayon"] }

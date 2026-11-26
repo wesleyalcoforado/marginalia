@@ -1,0 +1,630 @@
+# Catalogo de textos (portugues). Formato: chave = texto
+# Menus: titulos e itens (rotulos)
+menu.title.marginalia = Marginalia
+menu.title.file = Arquivo
+menu.title.edit = Editar
+menu.title.exibir = Exibir
+menu.title.navigate = Navegar
+menu.title.image = Imagem
+menu.title.help = Ajuda
+menu.about = Sobre o Marginalia
+menu.exit = Sair do Marginalia
+menu.settings = Configurações…
+menu.open_source = Abrir fonte…
+menu.open_vault = Abrir vault…
+menu.close_source = Fechar fonte
+menu.undo = Desfazer
+menu.cut = Recortar
+menu.copy = Copiar
+menu.paste = Colar
+menu.select_all = Selecionar tudo
+menu.delete_highlight = Excluir grifo
+menu.delete_item = Excluir nota/tarefa…
+menu.notes = Notas
+menu.sources = Fontes
+menu.tasks = Tarefas
+menu.image_adjustments = Ajustes de imagem
+menu.tools = Barra de ferramentas
+menu.zoom_up = Aumentar zoom
+menu.zoom_down = Diminuir zoom
+menu.adjust = Ajustar à janela
+menu.previous = Imagem anterior
+menu.next = Próxima imagem
+menu.focus_quick_note = Focar nota
+menu.focus_image = Focar imagem
+menu.rotate_left = Girar à esquerda
+menu.rotate_right = Girar à direita
+menu.highlight_box = Grifo caixa
+menu.arrow_highlight = Grifo seta
+menu.highlight_colors = Cor dos grifos
+menu.brightness_up = Aumentar brilho
+menu.brightness_down = Diminuir brilho
+menu.contrast_up = Aumentar contraste
+menu.contrast_down = Diminuir contraste
+menu.sharpness_up = Aumentar nitidez
+menu.sharpness_down = Diminuir nitidez
+menu.highpass_up = Aumentar passa-alta
+menu.highpass_down = Diminuir passa-alta
+menu.threshold_up = Aumentar limiar
+menu.threshold_down = Diminuir limiar
+menu.invert = Inverter
+menu.gray = Tons de cinza
+menu.threshold = Limiar
+menu.restore = Restaurar ajustes
+menu.help = Ajuda
+
+# Tela de ajuda: grupos e linhas (descricao e teclas)
+help.group.navigate = Navegar
+help.navigate.image_previous_next = Imagem anterior / seguinte
+help.navigate.image_previous_next.keys = {shortcut:previous} {shortcut:next}
+help.navigate.page_previous_next = Página anterior / seguinte
+help.navigate.page_previous_next.keys = PageUp PageDown
+help.navigate.open_source = Abrir fonte
+help.navigate.open_source.keys = {shortcut:open_source}
+help.navigate.open_vault = Abrir vault
+help.navigate.open_vault.keys = {shortcut:open_vault}
+help.navigate.picker_of_vault_choose_open_close = Seletor de vault: escolher, abrir, fechar
+help.navigate.picker_of_vault_choose_open_close.keys = ↑ ↓ {shortcut:key_enter} Esc
+help.navigate.picker_open_folder_create_vault_here = Seletor: abrir pasta, criar vault aqui
+help.navigate.picker_open_folder_create_vault_here.keys = o n
+help.group.image = Imagem
+help.image.relocate = Mover
+help.image.relocate.keys = W A S D ou arrastar
+help.image.zoom_adjust = Zoom + / − / ajustar
+help.image.zoom_adjust.keys = {shortcut:zoom_up} {shortcut:zoom_down} {shortcut:adjust}
+help.image.rotate_the_left_right = Girar à esquerda / direita
+help.image.rotate_the_left_right.keys = {shortcut:rotate_left} {shortcut:rotate_right}
+help.image.adjustments_panel = Painel de ajustes
+help.image.adjustments_panel.keys = {shortcut:image_adjustments}
+help.image.brightness = Brilho − / +
+help.image.brightness.keys = {shortcut:brightness_down} {shortcut:brightness_up}
+help.image.contrast = Contraste − / +
+help.image.contrast.keys = {shortcut:contrast_down} {shortcut:contrast_up}
+help.image.invert_gray_threshold = Inverter · cinza · limiar
+help.image.invert_gray_threshold.keys = {shortcut:invert} {shortcut:gray} {shortcut:threshold}
+help.image.restore_adjustments = Restaurar ajustes
+help.image.restore_adjustments.keys = {shortcut:restore}
+help.image.textbox_numeric_of_a_bar = Caixa numérica de uma barra
+help.image.textbox_numeric_of_a_bar.keys = ↑ ↓ {shortcut:key_enter} Esc
+help.group.highlights = Grifos
+help.highlights.textbox = Caixa
+help.highlights.textbox.keys = botão ou {shortcut:key_shift} arrastar
+help.highlights.arrow = Seta
+help.highlights.arrow.keys = botão ou {shortcut:key_alt} arrastar
+help.highlights.short_arrow = Seta curta
+help.highlights.short_arrow.keys = {shortcut:key_alt} clique
+help.highlights.select = Selecionar
+help.highlights.select.keys = clique no grifo
+help.highlights.erase_highlight = Apagar grifo
+help.highlights.erase_highlight.keys = {shortcut:key_backspace} {shortcut:key_delete}
+help.highlights.undo_erase = Desfazer apagar
+help.highlights.undo_erase.keys = {shortcut:undo}
+help.highlights.disable_the_tool_drop_the_highlight = Desligar a ferramenta, soltar o grifo
+help.highlights.disable_the_tool_drop_the_highlight.keys = Esc
+help.group.quick_note = Nota rápida
+help.quick_note.go_to_the_quick_note = Ir para a nota
+help.quick_note.go_to_the_quick_note.keys = {shortcut:focus_quick_note} /
+help.quick_note.back_the_image = Voltar à imagem
+help.quick_note.back_the_image.keys = {shortcut:focus_image} Esc
+help.quick_note.new_line = Nova linha
+help.quick_note.new_line.keys = {shortcut:key_enter}
+help.quick_note.finish = Finalizar
+help.quick_note.finish.keys = {shortcut:finish_quick_note}
+help.quick_note.walk_by_the_text = Andar pelo texto
+help.quick_note.walk_by_the_text.keys = ← → ↑ ↓ Home End
+help.quick_note.erase = Apagar
+help.quick_note.erase.keys = {shortcut:key_backspace} {shortcut:key_delete}
+help.quick_note.select_all_cut_copy_paste = Selecionar tudo, recortar, copiar, colar
+help.quick_note.select_all_cut_copy_paste.keys = {shortcut:select_all} {shortcut:cut} {shortcut:copy} {shortcut:paste}
+help.quick_note.start_with_creates_task = Começar com [] cria tarefa
+help.quick_note.start_with_creates_task.keys = []
+help.quick_note.etiquetar_word_in_the_text = Etiquetar: #palavra no texto
+help.quick_note.etiquetar_word_in_the_text.keys = #
+help.group.drawers = Gavetas
+help.drawers.notes_sources_tasks = Notas / fontes / tarefas
+help.drawers.notes_sources_tasks.keys = {shortcut:notes} {shortcut:sources} {shortcut:tasks}
+help.drawers.search_in_the_text_of_the_notes = Buscar no texto das notas
+help.drawers.search_in_the_text_of_the_notes.keys = clique na busca
+help.drawers.choose_line = Escolher linha
+help.drawers.choose_line.keys = ↑ ↓
+help.drawers.open_quick_note_task_source = Abrir (nota, tarefa, fonte)
+help.drawers.open_quick_note_task_source.keys = {shortcut:key_enter}
+help.drawers.delete_quick_note_or_task_asks_confirmation = Excluir nota ou tarefa (pede confirmação)
+help.drawers.delete_quick_note_or_task_asks_confirmation.keys = {shortcut:key_backspace}
+help.drawers.mark_task_done = Marcar tarefa feita
+help.drawers.mark_task_done.keys = x espaço
+help.drawers.close_drawer = Fechar gaveta
+help.drawers.close_drawer.keys = Esc
+help.group.view_window = Janela
+help.view_window.tools_bar = Barra de ferramentas
+help.view_window.tools_bar.keys = menu Exibir
+help.view_window.help_is = Esta ajuda
+help.view_window.help_is.keys = {shortcut:help}
+help.view_window.settings = Configurações
+help.view_window.settings.keys = {shortcut:settings}
+help.view_window.exit = Sair
+help.view_window.exit.keys = {shortcut:exit}
+
+# Gavetas (estado/src/drawers.rs)
+drawer.title.notes = Notas
+drawer.title.tasks = Tarefas
+drawer.title.sources = Fontes
+drawer.hint.notes = Notas ({shortcut:notes})
+drawer.hint.sources = Fontes ({shortcut:sources})
+drawer.hint.tasks = Tarefas ({shortcut:tasks})
+drawer.shortcut.notes = {shortcut:notes}
+drawer.shortcut.sources = {shortcut:sources}
+drawer.shortcut.tasks = {shortcut:tasks}
+drawer.filter.open_all = abertas
+drawer.filter.done_all = feitas
+drawer.source_status.ok = ok
+drawer.source_status.no_path = sem caminho nesta maquina
+drawer.source_status.not_found = nao encontrada
+drawer.no_text = (sem texto)
+drawer.counter.filtered = {v} de {t}
+drawer.counter.uma = 1 nota
+drawer.counter.several = {t} notas
+drawer.cut = Mostrando {m} de {n} — use os filtros
+drawer.empty.filtered_notes = Nenhuma nota com esses filtros
+drawer.empty.notes = Nenhuma nota ainda: escreva na nota rapida (/) e aperte Enter
+drawer.empty.open_tasks = Nenhuma tarefa aberta: comece a nota rapida com [] para criar uma
+drawer.empty.done_tasks = Nenhuma tarefa feita ainda
+drawer.empty.sources = Nenhuma fonte neste vault: {shortcut:open_source} abre uma pasta ou um zip
+dialog.delete.quick_note_title = Excluir esta nota?
+dialog.delete.task_title = Excluir esta tarefa?
+dialog.delete.warning = O arquivo é apagado do vault e não dá para desfazer.
+dialog.delete.tasks_warning = {n} tarefa(s) que a citam continuam, como "nota excluída".
+dialog.delete.highlight_warning = O grifo ligado a ela continua na imagem.
+warning.line_not_found = nao encontrei {id} nas gavetas: nada foi excluido
+
+# Seletor de vault (estado/src/vault_picker.rs)
+picker.shortcut = {shortcut:open_vault}
+error.vault.not_exists = o vault {0} nao existe (disco desmontado?)
+error.vault.not_and_folder = {0} nao e uma pasta
+error.vault.unreadable = nao foi possivel ler o vault {0}: {1}
+error.vault.not_and_vault = {0} nao e um vault (use "Criar vault aqui")
+error.vault.old_format = o vault {0} esta no formato antigo (pasta pistas/): rode scripts/migrar_pistas_para_notas.py {0} e abra de novo
+error.vault.create = nao foi possivel preparar o vault em {0}: {1}
+
+# Barra de status (estado/src/layout.rs)
+status.vault = vault: {name}
+status.no_vault = sem vault
+status.source_no = nenhuma fonte aberta
+status.source = fonte: {name}
+status.page = pág {p}/{total}
+status.page_incerta = pág {p}/?
+status.image = img {i}/{n}
+
+# Relink e nomes de fonte (estado/src/relink.rs)
+warning.source.unavailable_title = Fonte indisponível: {0}
+warning.source.title_not_found = Fonte não encontrada: {0}
+warning.source.title_no_path = Fonte sem caminho nesta máquina: {0}
+warning.source.unavailable_explanation = Não foi possível ler {where_} ({detail}). O NAS está montado? Tente de novo ou aponte a nova localização.
+warning.source.reading_error = erro de leitura
+warning.source.explanation_not_found = {where_} não existe. O NAS está montado em outro lugar ou o arquivo foi movido?
+warning.source.explanation_no_path = Esta fonte veio de outro computador: aponte onde ela está nesta máquina.
+error.relink.deve_be_zip = a fonte {name} e um zip: escolha o arquivo .zip (nao {file_path})
+error.relink.deve_be_folder = a fonte {name} e uma pasta: escolha a pasta (nao {file_path})
+error.relink.no_images = {file_path} nao tem imagens (jpg, png, tif, pdf): nao e a fonte {name}
+error.relink.no_the_image_open = {file_path} nao tem {a}, a imagem aberta da fonte {name}
+error.relink.poucas_images = {file_path} tem so {found} das {total} imagens que o vault cita na fonte {name} (precisa de {min}; falta por exemplo {missing})
+dialog.relink.confirm = Usar {file_path} ({images} imagens) como a nova localizacao de "{name}"? Nada no vault cita imagens desta fonte para conferir.
+error.path_not_found = caminho nao encontrado: {0}
+warning.aguarde = aguarde: {0}
+warning.drop_no_vault = abra um vault ({shortcut:open_vault}) antes de soltar uma fonte na janela
+warning.aguarde_drop = aguarde: {0} (solte a fonte de novo quando terminar)
+status.renaming = renomeando a fonte...
+error.source_name.empty = o nome da fonte nao pode ficar vazio
+error.source_name.characters = nome invalido {n}: nao use / \ : nem quebras de linha
+error.source_name.image_point = nome invalido {n}: nao pode comecar com ponto
+error.source_name.long = nome longo demais ({bytes} bytes; o maximo e {max})
+error.source_name.same = o nome e o mesmo
+error.source_name.textbox = mudar so maiusculas/minusculas nao e possivel (o disco do Mac nao distingue)
+error.source_name.exists = ja existe uma fonte chamada {n} neste vault
+
+# Trabalhos exclusivos (interface)
+status.conferindo_location = conferindo a nova localizacao...
+
+status.vault_opening = abrindo o vault...
+
+# Abrir fontes (estado/src/open_source.rs)
+error.absent_path = caminho nao encontrado
+error.source.register = nao foi possivel registrar a fonte {name}: {e}
+error.source.ja_exists = ja existe outra fonte chamada {name} neste vault
+error.source.store_path = nao foi possivel guardar o caminho da fonte {name}: {e}
+warning.drop.nothing = nada para abrir: solte uma pasta, um zip, uma imagem ou um PDF
+warning.drop.several = solte um item so (pasta, zip, imagem ou PDF), nao {0} de uma vez
+warning.drop.kind = nao abro {name}: solte uma pasta, um zip, uma imagem (jpg/png/tiff) ou um PDF
+error.source.open = nao foi possivel abrir {file_path}: {e}
+error.name_file_invalid = nome de arquivo invalido: {0}
+
+error.load.page = {0} (pagina {1}): {2}
+
+# Estado: app_state/mod.rs
+warning.image_adjustments = nao foi possivel salvar os ajustes: {0}
+error.source.absent = a fonte {name} nao foi encontrada nesta maquina: aponte a nova localizacao
+error.quick_note.empty = nota vazia
+error.quick_note.no_vault = nenhum vault aberto: {shortcut:open_vault} escolhe ou cria um
+error.quick_note.no_image = nenhuma imagem aberta
+error.quick_note.write = nao foi possivel gravar a nota (o texto continua na caixa): {0}
+status.swap.vault = vault: {0}
+status.swap.quick_note_in_editing = a nota em edicao e salva no vault anterior
+status.swap.draft = o rascunho da nota continua na caixa
+status.swap.pending_highlight = o grifo pendente ficou no vault anterior
+warning.source_closed_other_vault = a fonte {f} nao e deste vault e foi fechada: {shortcut:open_source} abre uma fonte aqui
+
+# Estado: app_state/navegacao.rs
+error.source.unknown = fonte {name} desconhecida (nenhum vault aberto)
+error.source.no_images = a fonte {name} nao tem imagens (jpg, png, tif, pdf)
+warning.source_not_open = a fonte {source} nao esta aberta
+warning.unavailable_source = a fonte {source} esta indisponivel: tente de novo ou aponte a nova localizacao
+error.vault_changed = o vault mudou
+error.nothing_to_attempt = nada para tentar de novo
+error.still_tentando = ainda tentando ler a fonte...
+confirmation.closed_source = fonte fechada: {0} · {shortcut:open_source} abre outra
+warning.no_source_open = nenhuma fonte aberta
+status.source_opening = abrindo fonte...
+status.loading = carregando...
+status.quick_note_loading = carregando nota…
+
+# Estado: app_state/grifos.rs
+warning.highlights.unreadable = grifos de {source} ilegiveis ({e}); novos grifos nao serao gravados
+error.highlight.no_id = grifo sem id; nao foi gravado
+error.highlight.id_repeated = ja existe um grifo com o id {id}
+error.highlight.refused = grifo recusado: {0}
+error.highlight.write = nao foi possivel gravar o grifo: {0}
+error.highlight.not_found = grifo {id} nao encontrado nesta imagem
+error.highlight.write_deletion = nao foi possivel gravar a exclusao do grifo: {0}
+error.highlight.color_outside_of_the_palette = cor {color} fora da paleta
+error.highlight.write_color = nao foi possivel gravar a cor do grifo: {0}
+warning.highlight.remember_color = nao foi possivel lembrar a cor dos grifos: {0}
+error.highlight.other_image = grifo desenhado em outra imagem ({0}#{1}); nao foi gravado
+
+# Estado: app_state/notas.rs
+error.quick_note.not_and_quick_note = {id} nao e uma nota
+error.quick_note.not_found = nota {id} nao encontrada
+error.quick_note.read_file = nao foi possivel ler a nota {id}: {e}
+error.task.no_image = esta tarefa nao esta ligada a uma imagem
+error.quick_note.delete = nao foi possivel excluir {id}: {e}
+confirmation.deleted_quick_note = nota excluida: {0}
+confirmation.deleted_task = tarefa excluida: {0}
+confirmation.done_task = tarefa feita
+confirmation.task_reaberta = tarefa reaberta
+error.task.mark = nao foi possivel marcar a tarefa {0}: {1}
+warning.text_not_loaded = o texto de {0} nao foi carregado: {1}
+warning.join = {0} · {1}
+
+# Estado: app_state/vault.rs
+confirmation.source_relinkada = fonte {name} agora em {file_path}
+warning.remember_vault = nao foi possivel lembrar o vault: {0}
+error.source.list_read = nao foi possivel ler as fontes: {0}
+error.source.not_exists = a fonte {old} nao existe neste vault
+warning.rename.parou_in_the_end = renomear {old} para {new} parou no fim ({error}); nada se perdeu: recarregue as gavetas ({shortcut:sources})
+warning.rename.parou_in_the_middle = renomear {old} para {new} parou no meio ({error}); nada se perdeu: tente de novo
+error.rename = nao foi possivel renomear {old}: {error}
+warning.store_name_new = nao foi possivel guardar o nome novo nos dados do app: {0}
+confirmation.renamed_source = fonte renomeada: {old} -> {new}
+
+warning.remember_position = nao foi possivel lembrar a posicao na fonte: {0}
+
+# Nota rapida e sessao (estado/src/nota_sessao)
+warning.quick_note.sendo_salva = aguarde: a nota em edicao esta sendo salva
+quick_note.marker.vanished = a nota {0} sumiu do vault: o texto esta guardado na recuperacao. Recrie como nova nota ou descarte.
+quick_note.marker.changed_in_the_disk = {0} nota(s) mudou(aram) no disco depois da saida: o texto guardado nao foi gravado por cima. Recrie como nova nota ou descarte.
+quick_note.marker.so_in_the_recovery = {0} nota(s) guardada(s) so na recuperacao (vault indisponivel ou nota apagada por fora)
+
+warning.quick_note.finish_renaming = nao foi possivel terminar a renomeacao de {0}: {1}
+warning.quick_note.open = nao foi possivel abrir {0}: {1}
+warning.quick_note.vanished = a nota {0} sumiu do vault; o texto esta guardado na recuperacao (recrie como nova nota ou descarte)
+warning.quick_note.changed_in_the_disk = a nota {0} mudou no disco depois da saida; o texto guardado nao foi gravado por cima (recrie como nova nota ou descarte)
+warning.quick_note.renaming_in_progress = renomeacao de fonte em andamento: a nota em edicao ficou no registro de recuperacao
+warning.quick_note.not_written = {0} nota(s) nao gravada(s) no vault ficaram no registro de recuperacao
+warning.quick_note.vault_not_respondeu = o vault nao respondeu em {0}s: a nota em edicao ficou no registro de recuperacao
+
+warning.quick_note.deleted_in_editing = a nota que estava em edicao foi excluida: {0}
+
+error.quick_note.unavailable_vault = vault indisponivel: {0}
+error.quick_note.read_before_of_write = nao foi possivel ler a nota antes de gravar: {0}
+error.quick_note.stopped_renaming = renomeacao de {0} parada no meio: {1}
+
+error.recovery.isolate = nao foi possivel isolar o registro de recuperacao ilegivel {0}: {1}
+error.recovery.unreadable = registro de recuperacao ilegivel ({0}): {1}
+error.recovery.read_file = nao foi possivel ler {0}: {1}
+error.recovery.write = nao foi possivel gravar o registro de recuperacao {0}: {1}
+error.recovery.serializar = registro de recuperacao: {0}
+
+warning.recovery.isolated = registro de recuperacao ilegivel, guardado intacto em {0} (abra e recupere o texto a mao)
+warning.recovery.blocked = {0}; {1}: o registro nao sera mais escrito ate reabrir o app
+confirmation.quick_note.salva_in_the_vault_previous = nota salva no vault anterior: {0}
+confirmation.quick_note.created_quick_note = nota criada: {0}
+confirmation.quick_note.created_task = tarefa criada: {0}
+confirmation.quick_note.quick_note_salva = nota salva: {0}
+confirmation.quick_note.task_salva = tarefa salva: {0}
+
+# Erros do nucleo (nucleo/src/error.rs, decode.rs)
+error.no_frontmatter = documento sem frontmatter
+error.yaml = yaml invalido: {0}
+error.duplicate_name = nome ja existe: {0}
+error.not_found = nao encontrado: {0}
+error.state_invalid = estado invalido: {0}
+error.invalid_name = nome invalido: {0}
+error.outside_highlight = grifo fora da imagem: {0}
+error.color_outside_of_the_palette = cor fora da paleta: {0}
+error.json = json invalido: {0}
+error.version_not_supported = dados do app com versao {0} nao suportada
+error.zip = zip invalido: {0}
+error.input_not_found = entrada nao encontrada na fonte: {0}
+error.input_large = entrada grande demais na fonte: {0}
+error.invalid_path = caminho invalido: {0}
+error.decode = decodificacao: {0}
+error.io = io: {0}
+error.document = {0}: {1}
+
+error.decode.invalid = arquivo invalido: {0}
+error.decode.missing_page = pagina {0} inexistente (o documento tem {1})
+error.decode.not_supported = formato nao suportado: {0}
+error.decode.pdfium_unavailable = PDFium indisponivel: {0}
+error.decode.reading = fonte indisponivel: {0}
+error.vault.renaming_in_progress = renomeação em curso; finalize {0}
+error.vault.id_ambiguous = id {0} existe em mais de uma pasta ({1}); diga o tipo do documento
+
+error.decode.extension = extensao {ext} de {path}
+error.decode.empty_file = arquivo vazio
+error.decode.failure_interna = falha interna ao decodificar
+error.decode.tiff_recurso = TIFF com recurso nao suportado (compressao ou paleta, por exemplo): {0}
+error.decode.tiff_limits = TIFF grande demais ou com recurso nao suportado (limites do decodificador excedidos)
+error.decode.pixels_incompletos = dados de pixel incompletos
+error.decode.large_image = imagem grande demais ({0}x{1}; o maximo e {2} pixels)
+error.decode.tiff_color = TIFF com tipo de cor {0} (suportados: cinza, cinza+alfa, RGB e RGBA de 8 e 16 bits; cinza de 1 bit)
+error.decode.dimensoes = dimensoes inconsistentes
+error.decode.packbits = PackBits expande alem do tamanho declarado
+error.decode.tiff_tiles = TIFF de 1 bit em tiles
+error.decode.tiff_fillorder = TIFF com FillOrder=2 (bits invertidos) não suportado
+error.decode.tiff_predictor = TIFF com Predictor diferente de 1 não suportado
+error.decode.tiff_compression = TIFF de 1 bit com compressao {0} (CCITT/Fax e outras nao sao suportadas; suportadas: nenhuma, LZW, PackBits e Deflate)
+error.decode.strip = strip expande alem do tamanho declarado
+error.decode.no_memory = imagem grande demais (memoria insuficiente)
+error.decode.pdfium_as_install = defina PDFIUM_LIB_DIR com a pasta que contem a biblioteca da PDFium (libpdfium.dylib, pdfium.dll ou libpdfium.so), ou rode scripts/baixar_pdfium.py (veja docs/pdfium.md)
+error.decode.pdfium_biblioteca_of_the_sistema = biblioteca do sistema: {0}
+error.decode.pdfium_attempts = {0}. Tentativas: {1}
+error.decode.pdf_size = pagina com tamanho invalido
+error.decode.pdf_bitmap = bitmap do PDF inconsistente
+
+# Janela: barras
+app.name = Marginalia
+status.hint_click = {text}\nClique: {hint}
+btn.recreate_quick_note = Recriar como nova nota
+btn.discard = Descartar
+
+warning.not_se_aplica = {0}: nao se aplica agora
+warning.nothing_the_undo = nada a desfazer aqui
+
+confirmation.stored_highlight = grifo guardado: a proxima nota fica ligada a ele
+confirmation.erased_highlight = grifo apagado · {shortcut:undo} desfaz
+confirmation.returned_highlight = grifo devolvido
+warning.switch_color = nao foi possivel trocar a cor: {0}
+adjustment.color.selected_title = Cor do grifo (selecionado e novos)
+adjustment.color.new_title = Cor dos novos grifos
+adjustment.color.hint = {0} ({1})
+adjustment.color.help = clique seleciona · {shortcut:key_backspace} apaga · {shortcut:undo} desfaz
+adjustment.color.yellow = amarelo
+adjustment.color.vermelho = vermelho
+adjustment.color.green = verde
+adjustment.color.blue = azul
+adjustment.color.rosa = rosa
+adjustment.color.white = branco
+
+# Janela: ajustes
+warning.adjustment.not_and_number = {label}: {text} não é um número; fica o valor anterior
+adjustment.threshold.hint_textbox = desl.
+adjustment.invert = Inverter
+adjustment.gray_tones = Tons de cinza
+btn.restore_adjustments = Restaurar ajustes
+adjustment.show_barras = Mostrar as barras
+adjustment.recolher_barras = Recolher as barras
+adjustment.linked_preview = Prévia dos ajustes ligada: clique para ver a imagem sem ajustes (nada é apagado)
+adjustment.disabled_preview = Prévia dos ajustes desligada: a imagem aparece sem ajustes; clique para vê-los de novo
+adjustment.hint_header = {0}\nOs ajustes valem só na visualização (o arquivo não muda)
+adjustment.title = Ajustes
+adjustment.shortcut.brightness = ([ e ])
+adjustment.shortcut.contrast = ({{ e }})
+adjustment.shortcut.threshold = (t liga e desliga)
+adjustment.hint_bar = {0}{1}: {2} a {3}\nArraste na trilha ou digite na caixa (Enter confirma, Esc devolve; ↑/↓, com {shortcut:key_shift} de 10 em 10)\nDuplo clique aqui ou na trilha: volta ao neutro
+
+# Janela: mod, gavetas, widgets
+drawer.search.placeholder = buscar no texto
+quick_note.hint.no_vault = Sem vault: {shortcut:open_vault} escolhe ou cria um vault para criar notas
+quick_note.hint.loading = carregando nota…
+quick_note.hint.no_source = Abra uma fonte ({shortcut:open_source}) para criar notas
+quick_note.hint.quick = Nota rápida
+
+drawer.close = Fechar (Esc)
+drawer.no_vault = Sem vault: {shortcut:open_vault} escolhe ou cria um
+btn.cancel = Cancelar
+btn.delete = Excluir
+drawer.delete.hint_keys = Tab ou setas trocam o botão · Enter aciona o botão em foco · Esc cancela
+drawer.unreadable = {0} arquivo(s) ilegivel(is) no vault foram pulados
+drawer.task.hint_conclude = Marcar como feita
+drawer.task.hint_reopen = Reabrir tarefa
+drawer.task.deleted_quick_note = nota excluída
+drawer.sources.hint_rename = Enter renomeia (notas, tarefas e grifos seguem) · Esc cancela
+drawer.kind_source.image = Imagem
+drawer.kind_source.folder = Pasta de imagens
+drawer.kind_source.pdf = PDF
+drawer.kind_source.zip = Zip
+btn.rename = Renomear
+btn.point_location = Apontar nova localização…
+error.image_already_open = a imagem da linha ja foi aberta
+warning.other_click = outro clique pediu outro texto
+
+# Janela: vault
+btn.create_vault_here = Criar vault aqui
+dialog.vault.open = Abrir vault
+dialog.vault.not_and_vault = {0} nao e um vault.
+dialog.vault.create_folders = Criar as pastas fontes/, notas/, tarefas/ e grifos/ aqui?
+picker.active = {0}  (ativo)
+picker.empty = Nenhum vault ainda: abra uma pasta que ja e vault ou crie um
+picker.title = Vaults
+picker.button_open = Abrir pasta… (o)
+picker.button_create = Criar vault aqui (n)
+picker.hint = Setas escolhem · Enter abre · Esc fecha. Um vault ativo por vez; as gavetas mostram o dele.
+
+# Janela: fonte
+warning.other_source_before = outra fonte foi aberta antes
+warning.source_not_abriu = a fonte nao abriu
+dialog.source.open = Abrir fonte
+dialog.source.ja_exists = Ja existe outra fonte chamada "{0}" neste vault.
+dialog.source.open_as = Abrir como "{0}"
+warning.closed_source = a fonte foi fechada
+btn.new_attempt = Tentar de novo
+dialog.source.new_location = Nova localização de {0}
+btn.adopt_location = Usar esta localização
+source.solte_to_open = Solte para abrir a fonte
+dialog.zip.question = Como abrir este zip?
+dialog.zip.detail = Abrir direto le do NAS a cada imagem. Copiar para cache faz uma copia local, apagada ao fechar o app.
+btn.open_direct = Abrir direto
+btn.copy_to_cache = Copiar para cache
+
+adjustment.bar.brightness = Brilho
+adjustment.bar.contrast = Contraste
+adjustment.bar.sharpness = Nitidez
+adjustment.bar.highpass = Passa-alta
+adjustment.bar.threshold = Limiar
+
+error.image_not_drawn = a imagem nao pode ser desenhada: {0}
+status.loading_viewer = Carregando...
+
+# Janela: main
+error.open_vault = nao foi possivel abrir o vault {0}: {1}
+warning.unreadable_app_data = dados do app ilegiveis em {0} ({1}); os ajustes desta sessao nao serao guardados la
+
+# Janela: varredura final
+warning.not_encontrei_in_the_drawers = nao encontrei {id} nas gavetas
+drawer.search.clear = Limpar a busca
+drawer.filter_sources.all_menu = Todas as fontes ▾
+drawer.filter_sources.uma = {0} ▾
+drawer.filter_sources.several = {0} fontes ▾
+drawer.filter_sources.all = Todas as fontes
+
+warning.abra_source_to_quick_note = abra uma fonte ({shortcut:open_source}) para escrever uma nota
+
+help.title = Atalhos e comandos
+help.close = Esc ou ? fecha
+
+error.open_image.title = Erro ao abrir esta imagem
+error.open_image.hint = Use as setas para seguir para outra imagem.
+
+error.invalid_rotation = rotacao invalida: {0} (use 0, 90, 180 ou 270)
+
+# Revisao final: literais esquecidos
+drawer.atualizando = atualizando...
+
+drawer.sources.new_name = novo nome da fonte
+
+error.zip_empty = zip invalido: zip vazio
+
+# Tela de escolha do vault na partida (interface/src/splash.rs)
+splash.open_vault = Abrir vault
+splash.create_vault = Criar novo vault
+splash.not_found = pasta não encontrada (o NAS está montado?)
+splash.not_found_warning = {0} não foi encontrada: confira se o NAS está montado ou escolha outro vault.
+
+# Janela sem fonte aberta (main_view/fonte.rs)
+empty.title = Nenhuma fonte aberta
+empty.text = Abra uma pasta, um zip, uma imagem ou um PDF para começar. Você também pode soltar o item nesta janela.
+empty.btn = Abrir nova fonte
+empty.recent = Fontes recentes
+
+# Registros (estado: app_state/registros.rs)
+record.error.empty_name = Dê um nome ao registro.
+record.error.inside_start = Esta imagem já pertence ao registro "{0}": marque o início fora dele, ou na imagem em que ele termina.
+record.error.before_end = O fim não pode vir antes do início do registro.
+record.error.swallows_end = O fim passaria por cima do registro "{0}".
+record.error.write = Não foi possível gravar o registro: {0}
+record.error.not_shared = Só dá para mover o que está numa imagem compartilhada por dois registros.
+record.error.destination = Esse registro não contém a imagem desta nota.
+record.error.no_image_item = Esta tarefa não está ligada a uma imagem.
+record.confirmation.start = Registro "{0}" começa aqui.
+record.confirmation.end = Registro "{0}" termina aqui.
+record.confirmation.discarded = Registro "{0}" removido (as notas continuam).
+record.confirmation.renamed = Registro renomeado para "{0}".
+record.confirmation.moved = Movida para o registro "{0}".
+record.confirmation.moved_of_back = Voltou ao registro de antes.
+
+# Arvore de registros (arvore.rs)
+record.index.image = img {0}
+record.index.page = pág {0}
+record.range = {0} – {1}
+record.open_range = {0} – …
+record.page_position = {0} p. {1}
+
+# Faixa de registro no leitor (interface: main_view/registros.rs)
+record.strip.outside = Fora de qualquer registro
+record.strip.em = Em: {0} ({1})
+record.strip.no_end = {0} · começa em {1} · sem fim ainda
+record.strip.boundary = · imagem compartilhada com outro registro
+record.strip.invalid = O registro "{0}" tem um intervalo inválido: corrija o arquivo ou exclua o registro.
+record.strip.name = Nome do registro:
+record.strip.name_placeholder = Inventário de João Silva
+record.strip.confirm_delete = Excluir o registro "{0}"? As notas dele continuam.
+record.btn.mark_start = Marcar início de registro aqui
+record.btn.mark_end = Marcar fim aqui
+record.btn.adjust_end = Ajustar fim aqui
+
+# Arvore nas gavetas (interface: main_view/gavetas.rs)
+record.drawer.no_source = Sem fonte
+record.drawer.count = {0} nota(s)
+record.drawer.invalid = intervalo inválido
+record.relocate.to = Mover para "{0}"
+record.relocate.of_back = Voltar para "{0}"
+record.btn.extend_no_target = Estender o registro anterior até aqui
+record.btn.extend = Estender "{0}" até aqui
+
+# "Ir para" da barra de ferramentas
+tools.ir_to = Ir para
+tools.go_to_hint = Digite o número da imagem ou da página e aperte Enter
+tools.go_to_total_images = Total de imagens: {0}
+tools.go_to_total_pages = Total de páginas: {0}
+warning.ir_to.no_source = abra uma fonte para ir a uma imagem
+warning.ir_to.aguarde = aguarde o arquivo carregar: o total de páginas ainda não é conhecido
+warning.ir_to.not_and_number = "{0}" não é um número de imagem ou página
+
+config.title = Configurações
+config.close = Esc fecha
+config.restore = Restaurar padrões
+config.choice.yes = Sim
+config.choice.not = Não
+config.section.start = Ao abrir o app
+config.reopen.title = Reabrir a última fonte
+config.reopen.hint = Ao iniciar sem uma fonte indicada, abre a última usada neste vault.
+config.section.quick_note = Nota rápida
+config.rhythm.title = Salvamento da nota
+config.rhythm.hint = Tempo de espera após a última tecla digitada.
+config.rhythm.fast = Rápido
+config.rhythm.normal = Normal
+config.rhythm.calm = Espaçado
+config.font.title = Tamanho da letra da nota
+config.font.hint = Aplica-se à caixa da nota rápida.
+config.font.small = Pequena
+config.font.media = Média
+config.font.large = Grande
+config.section.panel = Painel lateral
+config.panel.title = Largura do painel
+config.panel.hint = A borda do painel também pode ser arrastada.
+config.panel.hint_personalizada = Largura personalizada (borda arrastada).
+config.panel.estreito = Estreito
+config.panel.medium = Médio
+config.panel.largo = Largo
+config.section.aparencia = Aparência
+config.theme.title = Tema
+config.theme.hint = Cores da janela. A cor dos grifos não muda.
+config.theme.dark = Escuro
+config.theme.light = Claro
+config.theme.sepia = Sépia
+about.title = Sobre o Marginalia
+about.version = Versão {0}
+about.description = Notas, grifos e tarefas sobre imagens de pesquisa, num vault de markdown.
+about.developer = Desenvolvido por {0}
+about.name_developer = Wesley Alcoforado
+about.link = Genealogia do Ceará
+about.right = © {0} {1}. Todos os direitos reservados.

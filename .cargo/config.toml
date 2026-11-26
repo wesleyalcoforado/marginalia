@@ -1,0 +1,4 @@
+# gpui 0.2.2 puxa block 0.1.6 e proc-macro-error2 2.0.1, que geram o aviso
+# "future-incompat" a cada build; nao e codigo nosso (ver docs/gpui.md).
+[future-incompat-report]
+frequency = "never"

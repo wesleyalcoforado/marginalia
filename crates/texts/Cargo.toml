@@ -1,0 +1,9 @@
+[package]
+name = "texts"
+version = "0.1.0"
+edition = "2021"
+
+
+[[test]]
+name = "keys"
+path = "integration/keys.rs"
