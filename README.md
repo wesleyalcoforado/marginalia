@@ -341,3 +341,10 @@ no fundo quando a janela volta ao foco (edições feitas no Obsidian aparecem).
 
 Ícones: [Unicons](https://github.com/Iconscout/unicons) da Iconscout, licença Apache-2.0 (texto em
 `crates/ui/assets/icons/LICENSE-unicons.txt`).
+
+## Licença
+
+O código é distribuído sob a [Apache-2.0](LICENSE). Pode ser usado, modificado e redistribuído, inclusive em projetos
+comerciais, desde que se **mantenha a atribuição**: o aviso de copyright, o texto da licença, a indicação das alterações
+feitas e o arquivo [`NOTICE`](NOTICE) (nome do autor e site) em toda redistribuição, original ou derivada. A PDFium que
+acompanha o app tem a licença própria dela (`LICENSE-pdfium.txt`, dentro do pacote).
