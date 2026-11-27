@@ -41,7 +41,7 @@ cargo run -p ui -- --vault <pasta-do-vault> [fonte]
   `scripts/empacotar_mac.sh` monta `dist/Marginalia.app` (PDFium em `Contents/Frameworks`, assinatura ad-hoc);
   `powershell -ExecutionPolicy Bypass -File scripts\empacotar_win.ps1` gera `dist\Marginalia-<versão>-win-x64.zip`
   (portátil: `marginalia.exe` + `pdfium.dll`). Ao empurrar uma tag `v*`, o workflow `release.yml` faz os dois e anexa os
-  zips a uma release do GitHub. O ícone mestre é `crates/ui/assets/app/marginalia.png`; `scripts/gerar_icones.py` (precisa do ImageMagick) gera dele a versão sem margem para o `.icns` do macOS, os tamanhos da tela de abertura e do Sobre e o `marginalia.ico` do Windows (embutido no `.exe` pelo `build.rs`). Sem notarização, o macOS bloqueia o app baixado (botão direito → Abrir).
+  zips a uma release do GitHub. O ícone mestre é `crates/ui/assets/app/marginalia.png`; `scripts/gerar_icones.py` (precisa do ImageMagick) gera dele a versão sem margem para o `.icns` do macOS, os tamanhos da tela de abertura e do Sobre e o `marginalia.ico` do Windows (embutido no `.exe` pelo `build.rs`). Sem notarização/assinatura, o sistema avisa na primeira vez: no macOS, tente abrir e depois Ajustes do Sistema → Privacidade e Segurança → "Abrir Mesmo Assim" (ou `xattr -dr com.apple.quarantine Marginalia.app`); no Windows (SmartScreen), "Mais informações" → "Executar assim mesmo".
 
 ## A janela
 
@@ -235,9 +235,22 @@ nada a desfazer, nenhuma linha escolhida na gaveta). Teclas de uma letra aparece
   ferramenta, sem atalho); Cor dos grifos (abre o menu de cores, sem atalho); aumentar/diminuir brilho (Cmd-]/Cmd-[), contraste (Cmd-Shift-]/Cmd-Shift-[), nitidez, passa-alta e limiar; Inverter (Cmd-I),
   Tons de cinza (Cmd-G), Limiar (Cmd-T); Restaurar ajustes (Cmd-Shift-R).
 
-- **Ajuda**: Ajuda (`?`), a tela com todos os comandos por assunto.
+- **Ajuda**: Ajuda (`?`), a tela com todos os comandos por assunto; Buscar atualizações… (checa agora se há versão nova, veja abaixo).
 
 "Fechar fonte" guarda a posição (reabrir a fonte volta ao mesmo quadro) e termina a nota em edição, que fica salva.
+
+## Aviso de versão nova
+
+Ao abrir, o app consulta em segundo plano (no máximo uma vez a cada 24 h) a última **release publicada** do repositório no
+GitHub. Se houver versão maior que a instalada, abre uma janelinha com **Baixar** (abre a página da release no navegador),
+**Agora não** e **Pular esta versão** (só volta a avisar de uma versão ainda maior). O app nunca baixa nem instala nada
+sozinho. Nada seu é enviado: é um GET anônimo, só com o nome e a versão do app no `User-Agent`. Sem internet, a checagem
+automática fica calada. **Ajuda → Buscar atualizações…** checa na hora e sempre responde (há versão nova, você já está na
+última, ou não foi possível verificar). Para desligar a checagem automática: Configurações → "Avisar sobre versão nova ao
+abrir". Rascunhos de release não contam: o aviso só aparece depois que a release é publicada.
+
+**Para quem publica:** suba `version` em `crates/ui/Cargo.toml`, crie a tag `v` + a mesma versão (`v0.2.0`; o workflow
+recusa se divergirem), espere o workflow gerar o **rascunho** da release, teste os zips e clique em **Publish release**.
 
 ## Registros
 
@@ -302,7 +315,7 @@ O painel das gavetas se redimensiona arrastando a borda direita dele (entre 220 
   pastas (`fontes/`, `notas/`, `tarefas/`, `registros/`, `grifos/`) continuam em português.
 - **Dados do app** (por máquina, nunca no vault): `~/Library/Application Support/Marginalia/appdata.json` (macOS) ou `%APPDATA%\Marginalia\appdata.json` (Windows) — o
   caminho de cada fonte nesta máquina (por vault), os ajustes de imagem e a rotação por imagem, a cor dos grifos, o último
-  vault e a lista dos vaults conhecidos — e `recuperacao.json` (texto da nota ainda não gravado no vault). A cópia
+  vault, a lista dos vaults conhecidos e o que o aviso de versão guarda (ligado ou não, quando checou, versão pulada) — e `recuperacao.json` (texto da nota ainda não gravado no vault). A cópia
   de zips em cache fica em `.../Marginalia/cache/` e é apagada ao sair. Apagar os dados do app não perde nada da
   pesquisa já gravada; `MARGINALIA_APPDATA` troca a pasta (o smoke usa uma temporária).
 
