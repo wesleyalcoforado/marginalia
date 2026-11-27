@@ -181,7 +181,7 @@ fn titles_and_labels_in_portuguese_and_capitalization_consistent() {
 
 /// A primeira coluna das linhas da tabela de teclas do README.
 fn readme_keys() -> Vec<&'static str> {
-    include_str!("../../../../README.md")
+    include_str!("../../../../docs/comportamento.md")
         .lines()
         .filter(|l| l.starts_with('|'))
         .filter_map(|l| l.split('|').nth(1))
@@ -195,7 +195,7 @@ fn readme_list_whole_shortcut_of_the_menus() {
     for (menu, label, _, shortcut) in items() {
         let Some(t) = shortcut else { continue };
         let n = notation_readme(t);
-        assert!(first.iter().any(|c| c.contains(&n)), "README sem {n} ({menu} > {label})");
+        assert!(first.iter().any(|c| c.contains(&n)), "docs/comportamento.md sem {n} ({menu} > {label})");
     }
 }
 
@@ -234,12 +234,12 @@ fn readme_list_all_key_registered() {
         first.iter().any(|c| c.contains(&m) && c.contains(&n))
     };
     for (t, a, _) in SHORTCUTS {
-        assert!(has("", &notation_readme(t)), "README sem o KeyBinding {t} ({a:?})");
+        assert!(has("", &notation_readme(t)), "docs/comportamento.md sem o KeyBinding {t} ({a:?})");
     }
     let aliases = [("pageup", "PageUp"), ("pagedown", "PageDown")];
     for (t, a) in KEYS {
         let n = aliases.iter().find(|(ap, _)| ap == t).map_or_else(|| notation_readme(t), |(_, p)| p.to_string());
-        assert!(has("", &n), "README sem a tecla {n} ({a:?})");
+        assert!(has("", &n), "docs/comportamento.md sem a tecla {n} ({a:?})");
     }
     let mut candidates: Vec<String> = ('a'..='z').chain('0'..='9').chain("[]{}+-=_/".chars()).map(String::from).collect();
     candidates.extend(
@@ -252,7 +252,7 @@ fn readme_list_all_key_registered() {
             let n = readme_name(k, cmd);
             for g in Drawer::ALL {
                 if focus_state::drawer_key(k, Focus::Drawer, Some(g), false, cmd, false, false).is_some() {
-                    assert!(has("gaveta em foco", &n), "README sem {n} (gaveta {g:?} em foco)");
+                    assert!(has("gaveta em foco", &n), "docs/comportamento.md sem {n} (gaveta {g:?} em foco)");
                     checked += 1;
                 }
             }
@@ -263,7 +263,7 @@ fn readme_list_all_key_registered() {
             if !(cmd && (arrow || quick_note(true) == quick_note(false))) {
                 if let Some(t) = quick_note(cmd) {
                     if t != crate::quick_note::Key::Ignore {
-                        assert!(has("na nota", &n), "README sem {n} (na nota)");
+                        assert!(has("na nota", &n), "docs/comportamento.md sem {n} (na nota)");
                         checked += 1;
                     }
                 }
@@ -272,21 +272,21 @@ fn readme_list_all_key_registered() {
                 // A caixa numerica de uma barra do painel de ajustes: ↑/↓ (Shift: de 10 em 10).
                 for shift in [false, true] {
                     if crate::slider::key_step(k, shift).is_some() {
-                        assert!(has("caixa numérica", &n), "README sem {n} (caixa numérica)");
+                        assert!(has("caixa numérica", &n), "docs/comportamento.md sem {n} (caixa numérica)");
                         if shift {
-                            assert!(has("caixa numérica", "Shift"), "README sem Shift (caixa numérica)");
+                            assert!(has("caixa numérica", "Shift"), "docs/comportamento.md sem Shift (caixa numérica)");
                         }
                         checked += 1;
                     }
                 }
                 if crate::vault_picker::picker_key(k).is_some() {
-                    assert!(has("seletor de vault", &n), "README sem {n} (seletor de vault)");
+                    assert!(has("seletor de vault", &n), "docs/comportamento.md sem {n} (seletor de vault)");
                     checked += 1;
                 }
                 let pan = focus_state::pan_key(k, Focus::Image, false, false, false, false).is_some();
                 let highlight = focus_state::highlight_key(k, Focus::Image, false, false, false, false, true, true).is_some();
                 if pan || highlight {
-                    assert!(has("imagem em foco", &n), "README sem {n} (imagem em foco)");
+                    assert!(has("imagem em foco", &n), "docs/comportamento.md sem {n} (imagem em foco)");
                     checked += 1;
                 }
             }
@@ -308,7 +308,7 @@ fn readme_list_all_key_registered() {
         ("confirmação de excluir", "espaço"),
         ("confirmação de excluir", "Esc"),
     ] {
-        assert!(has(marker, n), "README sem {n} ({marker})");
+        assert!(has(marker, n), "docs/comportamento.md sem {n} ({marker})");
     }
 }
 
