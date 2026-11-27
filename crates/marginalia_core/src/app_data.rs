@@ -83,6 +83,23 @@ struct Data {
     #[serde(default, skip_serializing_if = "Theme::is_default")]
     #[serde(rename = "theme", alias = "tema")]
     theme: Theme,
+    /// Avisar de versao nova ao abrir; ausente = sim.
+    #[serde(default = "default_true", skip_serializing_if = "is_true")]
+    auto_update_check: bool,
+    /// Instante (segundos Unix) da ultima checagem de versao bem-sucedida.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    last_update_check: Option<i64>,
+    /// Versao nova que a pessoa pediu para nao avisar mais ("Pular esta versao").
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    skipped_version: Option<String>,
+}
+
+fn default_true() -> bool {
+    true
+}
+
+fn is_true(b: &bool) -> bool {
+    *b
 }
 
 /// Quanto a nota rapida espera, depois da ultima tecla, para ir ao disco (tela de Configuracoes).
@@ -182,6 +199,9 @@ impl Default for Data {
             quick_note_rhythm: QuickNoteRhythm::Normal,
             quick_note_font: FontSize::Media,
             theme: Theme::Dark,
+            auto_update_check: true,
+            last_update_check: None,
+            skipped_version: None,
         }
     }
 }
@@ -468,6 +488,36 @@ impl AppData {
         self.data.theme = t;
     }
 
+    /// Avisar de versao nova ao abrir o app? (padrao: sim)
+    pub fn auto_update_check(&self) -> bool {
+        self.data.auto_update_check
+    }
+
+    /// Guarda se o app avisa de versao nova ao abrir. Nao salva.
+    pub fn set_auto_update_check(&mut self, v: bool) {
+        self.data.auto_update_check = v;
+    }
+
+    /// Instante (segundos Unix) da ultima checagem de versao bem-sucedida.
+    pub fn last_update_check(&self) -> Option<i64> {
+        self.data.last_update_check
+    }
+
+    /// Guarda o instante da ultima checagem bem-sucedida. Nao salva.
+    pub fn set_last_update_check(&mut self, t: i64) {
+        self.data.last_update_check = Some(t);
+    }
+
+    /// A versao que a pessoa pulou, se alguma.
+    pub fn skipped_version(&self) -> Option<crate::update::Version> {
+        self.data.skipped_version.as_deref().and_then(crate::update::Version::parse)
+    }
+
+    /// Guarda (ou limpa) a versao pulada. Nao salva.
+    pub fn set_skipped_version(&mut self, v: Option<crate::update::Version>) {
+        self.data.skipped_version = v.map(|v| v.to_string());
+    }
+
     /// Tamanho da letra da nota rapida (padrao: media).
     pub fn quick_note_font(&self) -> FontSize {
         self.data.quick_note_font
@@ -495,6 +545,7 @@ impl AppData {
         self.data.quick_note_font = FontSize::default();
         self.data.drawers_width = None;
         self.data.theme = Theme::default();
+        self.data.auto_update_check = true;
     }
 
     pub fn last_vault(&self) -> Option<&Path> {
