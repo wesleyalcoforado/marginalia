@@ -215,7 +215,7 @@ desfazer com `OsAction`).
 - Testes (`menus::tests`, `main::tests`): todo `acao_id` resolve e vira uma acao do gpui propria; nenhum `acao_id`
   nem atalho repetido; atalhos com Cmd da arvore == `ATALHOS` (e vice-versa); teclas simples == `TECLAS` /
   `foco::tecla_grifo`; dicas das gavetas e da barra == as do menu; rotulos em portugues, maiuscula so no inicio,
-  `…`; o README lista todo atalho dos menus; a barra do gpui espelha a arvore.
+  `…`; docs/comportamento.md lista todo atalho dos menus; a barra do gpui espelha a arvore.
 - Smoke (`smoke_menus`, com vault): confere a barra posta (`App::get_menus`), escolhe itens pela janela
   (`Window::dispatch_action`, o caminho do macOS) e compara com as teclas: Notas = Cmd-1 (gaveta, foco, largura),
   Excluir nota/nota… abre a confirmacao (Esc cancela), Aumentar zoom = `+`, Ajustar = `0`, Ajustes = `F`,

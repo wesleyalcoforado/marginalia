@@ -4,8 +4,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Marginalia é um leitor de imagens para pesquisa genealógica (macOS e Windows, Rust + [gpui](https://gpui.rs)). Abre pastas/zips/PDFs de
 digitalizações e deixa anotar (grifos, notas rápidas que viram notas/tarefas em markdown) sem alterar as imagens. Código,
-comentários, testes e documentação são em português. O `README.md` é a referência do comportamento (atalhos, menus, nota rápida,
-dados); leia-o antes de mexer em qualquer coisa visível.
+comentários, testes e documentação são em português. O `README.md` é só o básico para humanos (compilar, licença, créditos); a referência do comportamento (atalhos, menus, nota rápida,
+dados) é `docs/comportamento.md`: leia-a antes de mexer em qualquer coisa visível.
 
 ## Comandos
 
@@ -34,6 +34,19 @@ Mudou geometria da imagem, camadas/tile, grifos, menus ou layout: rode o smoke, 
 `gpui` está fixado em `=0.2.2` (API muda rápido; atualizar é decisão explícita, rodar o smoke). Não rode `cargo update` geral.
 O código-fonte do gpui para consulta fica em `~/.cargo/registry/src/*/gpui-0.2.2/`. `cargo clippy` tem avisos antigos em
 `marginalia_core/src/decode.rs` (`chunks_exact`); não são de quem está mexendo.
+
+## Distribuição e releases
+
+**Pacote para distribuir** (o `cargo build --release` só gera o executável solto, que no macOS abre o Terminal):
+  `scripts/empacotar_mac.sh` monta `dist/Marginalia.app` (PDFium em `Contents/Frameworks`, assinatura ad-hoc);
+  `powershell -ExecutionPolicy Bypass -File scripts\empacotar_win.ps1` gera `dist\Marginalia-<versão>-win-x64.zip`
+  (portátil: `marginalia.exe` + `pdfium.dll`). Ao empurrar uma tag `v*`, o workflow `release.yml` faz os dois e anexa os
+  zips a uma release do GitHub. O ícone mestre é `crates/ui/assets/app/marginalia.png`; `scripts/gerar_icones.py` (precisa do ImageMagick) gera dele a versão sem margem para o `.icns` do macOS, os tamanhos da tela de abertura e do Sobre e o `marginalia.ico` do Windows (embutido no `.exe` pelo `build.rs`). Sem notarização/assinatura, o sistema avisa na primeira vez: no macOS, tente abrir e depois Ajustes do Sistema → Privacidade e Segurança → "Abrir Mesmo Assim" (ou `xattr -dr com.apple.quarantine Marginalia.app`); no Windows (SmartScreen), "Mais informações" → "Executar assim mesmo".
+
+**Aviso de versão nova.** `marginalia_core::update` (lógica pura) + `state::update_check` (HTTP com `ureq`, bloqueante, no executor de fundo) + `ui::update_notice`/`main_view/update_screen.rs` (janela). O app lê `releases/latest` do repositório no GitHub (sem token): o GitHub ignora rascunhos, então publicar a release é o gatilho do aviso. A versão do app é a de `crates/ui/Cargo.toml` (`update::parse_own(env!("CARGO_PKG_VERSION"))` na `ui`; a de `state`/`core` não vale). `MARGINALIA_UPDATE_URL` troca o endereço (o smoke usa um servidor local; no smoke a checagem automática só roda com essa variável). Campos novos em `AppData`: `auto_update_check` (padrão sim), `last_update_check`, `skipped_version`. Nunca baixa nem instala nada.
+
+**Para quem publica:** suba `version` em `crates/ui/Cargo.toml`, crie a tag `v` + a mesma versão (`v0.2.0`; o workflow
+recusa se divergirem), espere o workflow gerar o **rascunho** da release, teste os zips e clique em **Publish release**.
 
 ## Arquitetura
 
@@ -80,7 +93,7 @@ leva o último valor). Mudou um valor/rotação/quadro: `nova_geracao()` e limpa
 **Um ponto de entrada para comandos.** Menu, atalho, botão e tecla chamam o mesmo `MainView::comando(Acao)`. Uma ação nova toca:
 `menus.rs` (`Acao`, `TODAS` com o tamanho certo, `id`, `atalho`, `ATALHOS`/`TECLAS`, `tree`, `disponivel`), a macro
 `acoes_do_menu!` em `main.rs` e o `match` de `comando`. Atalhos com Cmd que dependem de foco usam `Contexto::SoMenu`. O teste
-`menus::tests::readme_lista_toda_tecla_registrada` falha se um atalho novo não estiver na tabela do README: **atualize o README junto**.
+O teste `help::tests::help_list_whole_shortcut_of_the_menus` (e o vizinho das teclas da gaveta, nota e seletor) falha se um atalho novo não estiver na tela de Ajuda (`help.rs`); descreva o comportamento da tecla também em `docs/comportamento.md`.
 
 **Ferramentas e ajuda.** A ferramenta de grifo ligada (`annotate::Ferramenta`, estado só no `Viewer`) entra em `annotate::gesto`; a barra de ferramentas e o menu chamam as mesmas `Acao` (`GrifoCaixa`, `GrifoSeta`, `Ferramentas`). A tela de ajuda (`help.rs`, sem gpui) é uma tabela estática que testes cruzam com `menus::ATALHOS`/`TECLAS` e as teclas da gaveta, da nota e do seletor: atalho novo sem linha lá derruba o teste.
 
@@ -110,4 +123,4 @@ alinhados entre si.
   `src/`, declarados como `[[test]]` no `Cargo.toml` (ver `marginalia_core/integration`); assim `tests/` quer dizer sempre "testes de módulo". O teste de camadas trata `tests/foo.rs` com a mesma permissão de gpui de `foo.rs`.
 - Teste de um comportamento visível: faça no módulo sem gpui quando der, e o smoke para o que só existe com a janela.
 - `docs/superpowers/{specs,plans}` (só locais, não versionados: estão no `.gitignore`) guardam o design e os planos históricos (o `R2`, `R11`... dos comentários vêm do design); não são
-  a fonte da verdade do comportamento atual, o README e o código são.
+  a fonte da verdade do comportamento atual, `docs/comportamento.md` e o código são.
