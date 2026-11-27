@@ -147,3 +147,16 @@ fn theme_starts_dark_and_as_three_options_change_the_data() {
     assert!(choose(&mut d, Id::Theme, 0));
     assert_eq!(d.theme(), Theme::Dark);
 }
+
+#[test]
+fn update_check_line_reflects_and_changes_data() {
+    let mut d = data();
+    assert_eq!(active(&d, Id::UpdateCheck), vec![true, false]);
+    assert!(choose(&mut d, Id::UpdateCheck, 1));
+    assert!(!d.auto_update_check());
+    assert_eq!(active(&d, Id::UpdateCheck), vec![false, true]);
+    assert!(!choose(&mut d, Id::UpdateCheck, 1), "nada mudou");
+    assert!(!choose(&mut d, Id::UpdateCheck, 7), "indice invalido");
+    d.restore_settings();
+    assert!(d.auto_update_check());
+}
