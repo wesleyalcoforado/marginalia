@@ -1,6 +1,6 @@
 name: Release
 
-# Ao empurrar uma tag v*, gera os pacotes (macOS .app em zip e Windows portatil) e os anexa a uma release.
+# Ao empurrar uma tag v*, gera os pacotes (macOS .app em zip e Windows portatil) e os anexa a um RASCUNHO de release (so vira publica quando voce clicar em Publish).
 # Tambem pode ser rodado a mao (workflow_dispatch): so gera os artefatos, sem publicar.
 on:
   push:
@@ -68,7 +68,7 @@ jobs:
         with:
           path: pacotes
           merge-multiple: true
-      - name: Criar release
+      - name: Criar release (rascunho, publicada so depois de testar os zips)
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create "${{ github.ref_name }}" pacotes/*.zip --repo "${{ github.repository }}" --title "${{ github.ref_name }}" --generate-notes
+        run: gh release create "${{ github.ref_name }}" pacotes/*.zip --repo "${{ github.repository }}" --title "${{ github.ref_name }}" --generate-notes --draft
