@@ -75,3 +75,11 @@ fn due_cases() {
     assert!(due(Some(now - 86_400), now));
     assert!(due(Some(now + 5), now));
 }
+
+#[test]
+fn parse_rejects_plus_signs_and_due_survives_extreme_values() {
+    assert_eq!(Version::parse("+1.+2.+3"), None);
+    assert_eq!(Version::parse("1.2.-3"), None);
+    assert!(due(Some(i64::MIN), 0));
+    assert!(due(Some(i64::MAX), i64::MIN));
+}

@@ -19,7 +19,13 @@ impl Version {
     pub fn parse(s: &str) -> Option<Version> {
         let s = s.strip_prefix('v').unwrap_or(s);
         let mut parts = s.split('.');
-        let mut next = || parts.next()?.parse::<u32>().ok();
+        let mut next = || {
+            let p = parts.next()?;
+            if p.is_empty() || !p.bytes().all(|b| b.is_ascii_digit()) {
+                return None;
+            }
+            p.parse::<u32>().ok()
+        };
         let v = Version { major: next()?, minor: next()?, patch: next()? };
         if parts.next().is_some() {
             return None;
@@ -101,7 +107,7 @@ pub fn notice(check: Check, skipped: Option<Version>, manual: bool) -> Notice {
 pub fn due(last_check: Option<i64>, now: i64) -> bool {
     match last_check {
         None => true,
-        Some(t) => t > now || now - t >= INTERVAL_SECS,
+        Some(t) => t > now || now.saturating_sub(t) >= INTERVAL_SECS,
     }
 }
 

@@ -40,31 +40,27 @@ async fn wait_update(view_window: WindowHandle<MainView>, cx: &mut AsyncApp, wan
 pub(super) async fn smoke_update(view_window: WindowHandle<MainView>, cx: &mut AsyncApp) -> Result<(), String> {
     let e = |x: &dyn std::fmt::Display| x.to_string();
     let release = r###"{"tag_name":"v9.9.9","html_url":"https://example.com/r","body":"## Novidades\n* uma coisa"}"###.to_string();
-    std::env::set_var("MARGINALIA_UPDATE_URL", serve(release, 8));
+    std::env::set_var("MARGINALIA_UPDATE_URL", serve(release, 10));
 
+    let count = |view_window: WindowHandle<MainView>, cx: &mut AsyncApp| view_window.update(cx, |_, _, cx| cx.windows().len()).map_err(|x| x.to_string());
+    let base = count(view_window, cx)?;
+
+    // Manual: abre o aviso (com o menu, o caminho real). Fechar de novo.
     menu_by_the(view_window, cx, MenuAction::CheckUpdates).await?;
     if !wait_update(view_window, cx, true).await? {
         return Err("Buscar atualizacoes devia abrir o aviso".into());
     }
-    view_window.update(cx, |m, _, cx| m.close_update(cx)).map_err(|x| e(&x))?;
-    wait_idle(view_window, cx).await?;
-
-    // Automatico duas vezes na mesma sessao: so um aviso.
-    for _ in 0..2 {
-        view_window.update(cx, |m, _, cx| m.check_updates(false, cx)).map_err(|x| e(&x))?;
-        cx.background_executor().timer(Duration::from_millis(600)).await;
-    }
-    if !view_window.update(cx, |m, _, cx| m.open_update(cx)).map_err(|x| e(&x))? {
-        return Err("o automatico devia abrir o aviso uma vez".into());
+    if count(view_window, cx)? != base + 1 {
+        return Err("o aviso devia ser uma janela a mais".into());
     }
     view_window.update(cx, |m, _, cx| m.close_update(cx)).map_err(|x| e(&x))?;
     wait_idle(view_window, cx).await?;
 
-    // Versao pulada: o automatico nao abre, o manual abre.
+    // Versao pulada: o automatico (ainda sem aviso nesta sessao) nao abre nada; o manual abre.
     let v999 = Version::parse("9.9.9").ok_or("versao")?;
     view_window.update(cx, |m, _, cx| m.skip_update(v999, cx)).map_err(|x| e(&x))?;
     view_window.update(cx, |m, _, cx| m.check_updates(false, cx)).map_err(|x| e(&x))?;
-    cx.background_executor().timer(Duration::from_millis(600)).await;
+    cx.background_executor().timer(Duration::from_millis(1500)).await;
     if view_window.update(cx, |m, _, cx| m.open_update(cx)).map_err(|x| e(&x))? {
         return Err("versao pulada nao devia avisar no automatico".into());
     }
@@ -73,6 +69,22 @@ pub(super) async fn smoke_update(view_window: WindowHandle<MainView>, cx: &mut A
         return Err("o manual devia avisar mesmo da versao pulada".into());
     }
     view_window.update(cx, |m, _, cx| m.close_update(cx)).map_err(|x| e(&x))?;
+    wait_idle(view_window, cx).await?;
+
+    // Pulou uma versao menor: o automatico avisa, e o segundo automatico nao abre outro aviso.
+    let v998 = Version::parse("9.9.8").ok_or("versao")?;
+    view_window.update(cx, |m, _, cx| m.skip_update(v998, cx)).map_err(|x| e(&x))?;
+    view_window.update(cx, |m, _, cx| m.check_updates(false, cx)).map_err(|x| e(&x))?;
+    if !wait_update(view_window, cx, true).await? {
+        return Err("o automatico devia abrir o aviso".into());
+    }
+    view_window.update(cx, |m, _, cx| m.check_updates(false, cx)).map_err(|x| e(&x))?;
+    cx.background_executor().timer(Duration::from_millis(1500)).await;
+    if count(view_window, cx)? != base + 1 {
+        return Err("so um aviso por sessao: nunca duas janelas".into());
+    }
+    view_window.update(cx, |m, _, cx| m.close_update(cx)).map_err(|x| e(&x))?;
+    wait_idle(view_window, cx).await?;
 
     // Servidor fora do ar: o manual responde com a janela de falha.
     let closed = {

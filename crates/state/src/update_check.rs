@@ -23,13 +23,18 @@ pub fn endpoint() -> String {
     }
 }
 
-/// GET simples, sem cookie nem identificador (so o User-Agent com a versao). `None` em qualquer
-/// erro, status diferente de 200 ou corpo maior que 1 MiB.
-pub fn fetch(url: &str) -> Option<String> {
-    let agent = ureq::AgentBuilder::new().timeout(TIMEOUT).redirects(3).build();
+/// Um endereco https nunca pode ser redirecionado para http (o desvio entregaria uma release falsa).
+fn https_only_for(url: &str) -> bool {
+    url.starts_with("https://")
+}
+
+/// GET simples, sem cookie nem identificador (so o User-Agent com a versao do app, `app_version`).
+/// `None` em qualquer erro, status diferente de 200 ou corpo maior que 1 MiB.
+pub fn fetch(url: &str, app_version: &str) -> Option<String> {
+    let agent = ureq::AgentBuilder::new().timeout(TIMEOUT).redirects(3).https_only(https_only_for(url)).build();
     let resp = agent
         .get(url)
-        .set("User-Agent", concat!("Marginalia/", env!("CARGO_PKG_VERSION")))
+        .set("User-Agent", &format!("Marginalia/{app_version}"))
         .set("Accept", "application/vnd.github+json")
         .call()
         .ok()?;
@@ -44,7 +49,7 @@ pub fn fetch(url: &str) -> Option<String> {
 /// Checa agora (bloqueante). Devolve o resultado e o que mostrar; quem chama grava o instante da
 /// checagem so quando o resultado nao e `Check::Failed`.
 pub fn run(current: Version, skipped: Option<Version>, manual: bool) -> (Check, Notice) {
-    let body = fetch(&endpoint());
+    let body = fetch(&endpoint(), &current.to_string());
     let check = update::evaluate(current, body.as_deref());
     let notice = update::notice(check.clone(), skipped, manual);
     (check, notice)

@@ -54,6 +54,7 @@ impl Render for ViewUpdate {
                     .rounded_sm()
                     .bg(rgb(if b == Button::Download { t.accent } else { t.btn }))
                     .hover(move |s| s.bg(rgb(if b == Button::Download { t.accent_hover } else { t.button_hover })))
+                    .text_color(rgb(if b == Button::Download { t.accent_about } else { t.text }))
                     .cursor_pointer()
                     .child(update_notice::label(b))
                     .on_mouse_down(

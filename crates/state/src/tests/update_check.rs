@@ -34,24 +34,24 @@ fn v(s: &str) -> Version {
 #[test]
 fn fetch_returns_body_on_200() {
     let url = serve_once("200 OK", "ola".into());
-    assert_eq!(fetch(&url), Some("ola".to_string()));
+    assert_eq!(fetch(&url, "0.1.0"), Some("ola".to_string()));
 }
 
 #[test]
 fn fetch_none_on_404_and_on_connection_refused() {
     let url = serve_once("404 Not Found", "{}".into());
-    assert_eq!(fetch(&url), None);
+    assert_eq!(fetch(&url, "0.1.0"), None);
     let closed = {
         let l = TcpListener::bind("127.0.0.1:0").unwrap();
         format!("http://127.0.0.1:{}/", l.local_addr().unwrap().port())
     };
-    assert_eq!(fetch(&closed), None);
+    assert_eq!(fetch(&closed, "0.1.0"), None);
 }
 
 #[test]
 fn fetch_none_when_body_over_1mib() {
     let url = serve_once("200 OK", "x".repeat(1024 * 1024 + 10));
-    assert_eq!(fetch(&url), None);
+    assert_eq!(fetch(&url, "0.1.0"), None);
 }
 
 #[test]
@@ -107,4 +107,10 @@ fn auto_enabled_cases() {
     std::env::set_var("MARGINALIA_UPDATE_URL", "http://127.0.0.1:1/");
     assert!(auto_enabled(&d, now, true), "smoke com url");
     std::env::remove_var("MARGINALIA_UPDATE_URL");
+}
+
+#[test]
+fn only_https_origins_refuse_plain_http_redirects() {
+    assert!(https_only_for("https://api.github.com/x"));
+    assert!(!https_only_for("http://127.0.0.1:8080/"));
 }
