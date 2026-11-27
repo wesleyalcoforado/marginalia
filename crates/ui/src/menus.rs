@@ -20,6 +20,7 @@ use crate::drawers::Drawer;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 pub enum MenuAction {
     About,
+    CheckUpdates,
     Exit,
     OpenSource,
     OpenVault,
@@ -78,8 +79,9 @@ pub enum Reach {
 }
 
 impl MenuAction {
-    pub const ALL: [MenuAction; 45] = [
+    pub const ALL: [MenuAction; 46] = [
         MenuAction::About,
+        MenuAction::CheckUpdates,
         MenuAction::Exit,
         MenuAction::OpenSource,
         MenuAction::OpenVault,
@@ -130,6 +132,7 @@ impl MenuAction {
     pub fn id(self) -> &'static str {
         match self {
             MenuAction::About => "about",
+            MenuAction::CheckUpdates => "check_updates",
             MenuAction::Exit => "exit",
             MenuAction::OpenSource => "open_source",
             MenuAction::OpenVault => "open_vault",
@@ -447,7 +450,14 @@ pub fn tree() -> Vec<MenuDesc> {
                 item(t!("menu.restore"), MenuAction::Restore, Some(t::RESTORE)),
             ],
         },
-        MenuDesc { title: t!("menu.title.help"), items: vec![item(t!("menu.help"), MenuAction::Help, Some(t::HELP))] },
+        MenuDesc {
+            title: t!("menu.title.help"),
+            items: vec![
+                item(t!("menu.help"), MenuAction::Help, Some(t::HELP)),
+                Separator,
+                item(t!("menu.check_updates"), MenuAction::CheckUpdates, None),
+            ],
+        },
     ]
 }
 

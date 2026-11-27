@@ -55,7 +55,10 @@ Imagem|threshold|Limiar|cmd-t
 Imagem|---
 Imagem|restore|Restaurar ajustes|cmd-shift-r
 Ajuda|help|Ajuda|?
+Ajuda|---
+Ajuda|check_updates|Buscar atualizações…|
 dica|about|Sobre o Marginalia
+dica|check_updates|Buscar atualizações
 dica|exit|Sair do Marginalia (⌘Q)
 dica|open_source|Abrir fonte (⌘O)
 dica|open_vault|Abrir vault (⇧⌘V)
