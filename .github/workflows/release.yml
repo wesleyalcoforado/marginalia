@@ -68,7 +68,7 @@ jobs:
         with:
           path: pacotes
           merge-multiple: true
-      - name: Criar release (rascunho: voce publica depois de testar os zips)
+      - name: Criar release (rascunho, publicada so depois de testar os zips)
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh release create "${{ github.ref_name }}" pacotes/*.zip --repo "${{ github.repository }}" --title "${{ github.ref_name }}" --generate-notes --draft
