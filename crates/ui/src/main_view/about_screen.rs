@@ -57,7 +57,8 @@ impl Render for ViewAbout {
             .child(div().flex_1())
             .child(div().child(c.developer))
             .child(link)
-            .child(div().pt_4().text_xs().text_center().text_color(rgb(t.soft_text)).child(c.right))
+            .child(div().pt_4().text_xs().text_center().text_color(rgb(t.soft_text)).child(c.credits))
+            .child(div().pt_1().text_xs().text_center().text_color(rgb(t.soft_text)).child(c.right))
     }
 }
 

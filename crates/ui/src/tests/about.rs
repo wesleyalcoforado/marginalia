@@ -6,7 +6,8 @@ fn shows_name_version_author_and_right() {
     assert_eq!(c.name, "Marginalia");
     assert_eq!(c.version, format!("Versão {}", env!("CARGO_PKG_VERSION")));
     assert_eq!(c.developer, "Desenvolvido por Wesley Alcoforado");
-    assert_eq!(c.right, "© 2026 Wesley Alcoforado. Todos os direitos reservados.");
+    assert_eq!(c.right, "© 2026 Wesley Alcoforado. Licença Apache-2.0.");
+    assert_eq!(c.credits, "Ícones: Unicons (Iconscout), licença Apache-2.0.");
     assert_eq!(c.link_label, "Genealogia do Ceará");
     assert!(!c.description.is_empty() && !c.title.is_empty());
 }
@@ -20,7 +21,7 @@ fn the_site_and_the_of_the_genealogy_of_the_ceara_in_https() {
 #[test]
 fn none_marker_left_over_in_the_texts() {
     let c = content();
-    for text in [&c.title, &c.name, &c.version, &c.description, &c.developer, &c.link_label, &c.right] {
+    for text in [&c.title, &c.name, &c.version, &c.description, &c.developer, &c.link_label, &c.credits, &c.right] {
         assert!(!text.contains('{') && !text.contains('}'), "{text:?}");
     }
 }

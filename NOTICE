@@ -1,0 +1,10 @@
+Marginalia
+Copyright 2026 Wesley Alcoforado
+https://www.genealogiadoceara.net
+
+Este produto inclui:
+
+- Icones Unicons (https://github.com/Iconscout/unicons), de Iconscout, versao 4.2.0 (conjunto "uil"),
+  licenciados sob Apache-2.0. O texto completo esta em LICENSE-unicons.txt.
+- PDFium (https://pdfium.googlesource.com/pdfium/), distribuida junto do app, com a licenca propria
+  dela (LICENSE-pdfium.txt).

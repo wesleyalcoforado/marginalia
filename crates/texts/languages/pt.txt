@@ -627,4 +627,5 @@ about.description = Notas, grifos e tarefas sobre imagens de pesquisa, num vault
 about.developer = Desenvolvido por {0}
 about.name_developer = Wesley Alcoforado
 about.link = Genealogia do Ceará
-about.right = © {0} {1}. Todos os direitos reservados.
+about.right = © {0} {1}. Licença Apache-2.0.
+about.credits = Ícones: Unicons (Iconscout), licença Apache-2.0.
