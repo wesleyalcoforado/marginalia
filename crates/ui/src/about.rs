@@ -6,7 +6,7 @@ use texts::t;
 /// Onde o app e distribuido ao publico (a janela Sobre abre este endereco no navegador).
 pub const SITE: &str = "https://www.genealogiadoceara.net";
 
-/// Ano dos direitos reservados. Fixo (o do lancamento): atualize a mao quando quiser.
+/// Ano do copyright. Fixo (o do lancamento): atualize a mao quando quiser.
 pub const YEAR: i32 = 2026;
 
 /// Tudo o que a janela mostra, ja com os textos do catalogo.
@@ -17,6 +17,7 @@ pub struct Content {
     pub description: String,
     pub developer: String,
     pub link_label: String,
+    pub credits: String,
     pub right: String,
 }
 
@@ -29,6 +30,7 @@ pub fn content() -> Content {
         description: t!("about.description"),
         developer: t!("about.developer", author),
         link_label: t!("about.link"),
+        credits: t!("about.credits"),
         right: t!("about.right", YEAR, author),
     }
 }
