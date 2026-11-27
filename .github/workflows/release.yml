@@ -1,0 +1,74 @@
+name: Release
+
+# Ao empurrar uma tag v*, gera os pacotes (macOS .app em zip e Windows portatil) e os anexa a uma release.
+# Tambem pode ser rodado a mao (workflow_dispatch): so gera os artefatos, sem publicar.
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  pacotes:
+    name: Pacote (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: 1.100.0
+
+      - uses: Swatinem/rust-cache@v2
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Toolchain Metal (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          if ! xcrun -f metal >/dev/null 2>&1; then
+            xcodebuild -downloadComponent MetalToolchain
+          fi
+          xcrun -f metal
+
+      - name: Empacotar (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          scripts/empacotar_mac.sh
+          ditto -c -k --keepParent dist/Marginalia.app dist/Marginalia-macos-arm64.zip
+
+      - name: Empacotar (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: scripts/empacotar_win.ps1
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pacote-${{ runner.os }}
+          path: dist/*.zip
+          if-no-files-found: error
+
+  publicar:
+    name: Publicar release
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: pacotes
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: pacotes
+          merge-multiple: true
+      - name: Criar release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "${{ github.ref_name }}" pacotes/*.zip --repo "${{ github.repository }}" --title "${{ github.ref_name }}" --generate-notes

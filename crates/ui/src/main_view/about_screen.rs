@@ -12,21 +12,10 @@ pub(super) struct ViewAbout {
 }
 
 impl Render for ViewAbout {
-    fn render(&mut self, _: &mut Window, cx: &mut Context<Self>) -> impl IntoElement {
+    fn render(&mut self, window: &mut Window, cx: &mut Context<Self>) -> impl IntoElement {
         let c = about::content();
         let t = crate::theme::current();
-        // Icone do app: por enquanto o mesmo da tela de escolha do vault (sera trocado pelo definitivo).
-        let app_icon = div()
-            .flex_none()
-            .size(px(88.0))
-            .flex()
-            .items_center()
-            .justify_center()
-            .rounded_xl()
-            .bg(rgb(t.card))
-            .border_1()
-            .border_color(rgb(t.border))
-            .child(icon(Icon::Vault, 56.0, rgb(t.soft_text)));
+        let app_icon = crate::icons::app_icon(window, 96.0);
         let link = div()
             .id("sobre-link")
             .cursor_pointer()

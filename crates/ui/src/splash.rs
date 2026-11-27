@@ -8,7 +8,7 @@ use gpui::{div, prelude::*, px, rgb, App, Context, FontWeight, MouseButton, Mous
 use marginalia_core::vault::Vault;
 use texts::t;
 
-use crate::icons::{icon, Icon};
+use crate::icons::{app_icon, icon, Icon};
 use crate::splash_vault::{self, ItemSplash};
 use crate::vault_picker;
 
@@ -134,7 +134,7 @@ impl Render for SplashView {
             .bg(rgb(crate::theme::current().bar))
             .text_color(rgb(crate::theme::current().text))
             .text_sm()
-            .child(icon(Icon::Vault, 72.0, rgb(crate::theme::current().soft_text)))
+            .child(app_icon(window, 96.0))
             .child(div().text_2xl().font_weight(FontWeight::BOLD).child(t!("app.name")))
             .child(
                 div()

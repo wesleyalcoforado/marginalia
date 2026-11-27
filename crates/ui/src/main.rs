@@ -1,3 +1,4 @@
+#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 //! Marginalia: casca do app. Janela com a imagem (zoom, arrasto), barra minima,
 //! navegacao pelas setas, painel de ajustes (Cmd-F) e "Abrir fonte" (Cmd-O).
 //!

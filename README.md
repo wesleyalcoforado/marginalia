@@ -37,6 +37,11 @@ cargo run -p ui -- --vault <pasta-do-vault> [fonte]
   `MARGINALIA_SMOKE=1 MARGINALIA_APPDATA=/tmp/m cargo run -p ui -- <pasta-ou-zip> --vault <vault>`
   (detalhes em [`docs/gpui.md`](docs/gpui.md)). No PowerShell as variáveis de ambiente ficam definidas até fechar o
   terminal (e o app passaria a rodar o smoke sempre): use `powershell -ExecutionPolicy Bypass -File scripts\smoke.ps1 <pasta>`, que as limpa ao terminar (o `Bypass` vale só para essa execução: o Windows bloqueia scripts `.ps1` por padrão).
+- **Pacote para distribuir** (o `cargo build --release` só gera o executável solto, que no macOS abre o Terminal):
+  `scripts/empacotar_mac.sh` monta `dist/Marginalia.app` (PDFium em `Contents/Frameworks`, assinatura ad-hoc);
+  `powershell -ExecutionPolicy Bypass -File scripts\empacotar_win.ps1` gera `dist\Marginalia-<versão>-win-x64.zip`
+  (portátil: `marginalia.exe` + `pdfium.dll`). Ao empurrar uma tag `v*`, o workflow `release.yml` faz os dois e anexa os
+  zips a uma release do GitHub. O ícone mestre é `crates/ui/assets/app/marginalia.png`; `scripts/gerar_icones.py` (precisa do ImageMagick) gera dele a versão sem margem para o `.icns` do macOS, os tamanhos da tela de abertura e do Sobre e o `marginalia.ico` do Windows (embutido no `.exe` pelo `build.rs`). Sem notarização, o macOS bloqueia o app baixado (botão direito → Abrir).
 
 ## A janela
 

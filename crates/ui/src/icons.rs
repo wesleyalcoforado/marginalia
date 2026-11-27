@@ -7,7 +7,7 @@
 
 use std::borrow::Cow;
 
-use gpui::{px, svg, AssetSource, Hsla, IntoElement, Pixels, Result, SharedString, Styled};
+use gpui::{img, px, svg, AssetSource, Hsla, IntoElement, Pixels, Result, SharedString, Styled, Window};
 
 /// Um icone do conjunto embutido.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -182,11 +182,36 @@ pub fn icon(i: Icon, size: f32, color: impl Into<Hsla>) -> impl IntoElement {
     svg().path(i.file()).size(side).flex_none().text_color(color)
 }
 
-/// Fonte de assets do app: serve os icones embutidos.
+/// O icone do app em varios tamanhos (lado em pixels fisicos, caminho no `AssetSource`, bytes). Sao 96 px logicos nas
+/// escalas 1, 1.25, 1.5, 2 e 3: o gpui reduz textura sem filtro de qualidade (1024 -> 96 fica craquelado no Windows),
+/// entao a imagem sai 1:1. Gerados por `scripts/gerar_icones.py` a partir de `assets/app/marginalia.png`.
+const APP_ICONS: [(u32, &str, &[u8]); 5] = [
+    (96, "app/marginalia-96.png", include_bytes!("../assets/app/marginalia-96.png")),
+    (120, "app/marginalia-120.png", include_bytes!("../assets/app/marginalia-120.png")),
+    (144, "app/marginalia-144.png", include_bytes!("../assets/app/marginalia-144.png")),
+    (192, "app/marginalia-192.png", include_bytes!("../assets/app/marginalia-192.png")),
+    (288, "app/marginalia-288.png", include_bytes!("../assets/app/marginalia-288.png")),
+];
+
+/// Caminho do menor tamanho do icone do app que cobre `side` pixels logicos na escala `scale` (o maior, se nenhum cobre).
+pub fn app_icon_path(side: f32, scale: f32) -> &'static str {
+    let needed = (side * scale).ceil() as u32;
+    APP_ICONS.iter().find(|(l, _, _)| *l >= needed).unwrap_or(&APP_ICONS[APP_ICONS.len() - 1]).1
+}
+
+/// O icone do app com `side` pixels logicos, no tamanho certo para a escala da janela.
+pub fn app_icon(window: &Window, side: f32) -> impl IntoElement {
+    img(app_icon_path(side, window.scale_factor())).size(px(side)).flex_none()
+}
+
+/// Fonte de assets do app: serve os icones embutidos e o icone do app.
 pub struct Assets;
 
 impl AssetSource for Assets {
     fn load(&self, path: &str) -> Result<Option<Cow<'static, [u8]>>> {
+        if let Some((_, _, bytes)) = APP_ICONS.iter().find(|(_, p, _)| *p == path) {
+            return Ok(Some(Cow::Borrowed(*bytes)));
+        }
         Ok(ALL.iter().find(|i| i.file() == path).map(|i| Cow::Borrowed(i.bytes())))
     }
 
