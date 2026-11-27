@@ -16,6 +16,8 @@ mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources" "$APP/Contents/Framewor
 cp target/release/marginalia "$APP/Contents/MacOS/marginalia"
 cp vendor/pdfium/lib/libpdfium.dylib "$APP/Contents/Frameworks/"
 cp vendor/pdfium/LICENSE "$APP/Contents/Frameworks/LICENSE-pdfium.txt"
+# licenca, atribuicao do autor e licenca dos icones (a Apache-2.0 exige que acompanhem a redistribuicao)
+cp LICENSE NOTICE crates/ui/assets/icons/LICENSE-unicons.txt "$APP/Contents/Resources/"
 
 # Icone: o macOS 26 so mascara bem em todos os tamanhos o icone compilado de um pacote .icon (Assets.car, via actool,
 # que vem com o Xcode); um .icns solto sai quadrado nos tamanhos grandes. Sem actool, cai no .icns do iconutil.

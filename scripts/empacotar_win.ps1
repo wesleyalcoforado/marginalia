@@ -26,6 +26,8 @@ try {
     Copy-Item "target\release\marginalia.exe" $pasta
     Copy-Item "vendor\pdfium\lib\pdfium.dll" $pasta
     Copy-Item "vendor\pdfium\LICENSE" (Join-Path $pasta "LICENSE-pdfium.txt")
+# licenca, atribuicao do autor e licenca dos icones (a Apache-2.0 exige que acompanhem a redistribuicao)
+Copy-Item "LICENSE", "NOTICE", "crates\ui\assets\icons\LICENSE-unicons.txt" $pasta
 
     $zip = "dist\$nome.zip"
     if (Test-Path $zip) { Remove-Item -Force $zip }
