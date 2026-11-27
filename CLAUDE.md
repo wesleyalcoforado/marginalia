@@ -93,7 +93,7 @@ leva o último valor). Mudou um valor/rotação/quadro: `nova_geracao()` e limpa
 **Um ponto de entrada para comandos.** Menu, atalho, botão e tecla chamam o mesmo `MainView::comando(Acao)`. Uma ação nova toca:
 `menus.rs` (`Acao`, `TODAS` com o tamanho certo, `id`, `atalho`, `ATALHOS`/`TECLAS`, `tree`, `disponivel`), a macro
 `acoes_do_menu!` em `main.rs` e o `match` de `comando`. Atalhos com Cmd que dependem de foco usam `Contexto::SoMenu`. O teste
-`menus::tests::readme_lista_toda_tecla_registrada` falha se um atalho novo não estiver na tabela de teclas de `docs/comportamento.md`: **atualize esse arquivo junto**.
+O teste `help::tests::help_list_whole_shortcut_of_the_menus` (e o vizinho das teclas da gaveta, nota e seletor) falha se um atalho novo não estiver na tela de Ajuda (`help.rs`); descreva o comportamento da tecla também em `docs/comportamento.md`.
 
 **Ferramentas e ajuda.** A ferramenta de grifo ligada (`annotate::Ferramenta`, estado só no `Viewer`) entra em `annotate::gesto`; a barra de ferramentas e o menu chamam as mesmas `Acao` (`GrifoCaixa`, `GrifoSeta`, `Ferramentas`). A tela de ajuda (`help.rs`, sem gpui) é uma tabela estática que testes cruzam com `menus::ATALHOS`/`TECLAS` e as teclas da gaveta, da nota e do seletor: atalho novo sem linha lá derruba o teste.
 

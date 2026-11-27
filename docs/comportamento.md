@@ -1,6 +1,6 @@
 # Comportamento do Marginalia
 
-Referência de como o app se comporta: janela, teclas, menus, registros, gavetas e onde ficam os dados. É a fonte da verdade para quem mexe no código (o teste `menus::tests::readme_lista_toda_tecla_registrada` e vizinhos conferem a tabela de teclas deste arquivo). O `README.md` traz só o básico (compilar, licença, créditos).
+Referência de como o app se comporta: janela, teclas, menus, registros, gavetas e onde ficam os dados. É a fonte da verdade para quem mexe no código. O `README.md` traz só o básico (compilar, licença, créditos).
 
 ## Linha de comando e vault
 
@@ -180,9 +180,7 @@ gaveta. Com a confirmação de excluir aberta, ela fica com as teclas. Clicar na
 imagem, Cmd-Shift-K ou Esc (na nota) voltam à imagem; Cmd-K vai à nota. Cmd-Q, Cmd-O, Cmd-Shift-V, Cmd-K,
 Cmd-Shift-K e Cmd-1/2/3 valem de qualquer foco; Cmd-Z e Backspace dependem do foco (acima).
 
-Esta tabela é conferida por teste (`menus::tests::readme_lista_toda_tecla_registrada`): todo atalho registrado no
-app (os `KeyBinding`, as teclas simples dos menus e as teclas da gaveta, da nota, do seletor, da imagem e da
-confirmação) precisa aparecer aqui.
+A lista completa e sempre em dia das teclas é a tela de Ajuda (`?`), que o código confere contra as teclas registradas (`help.rs`). Esta tabela explica o comportamento de cada uma e mostra os **padrões**: quando as teclas forem configuráveis, as trocas do usuário ficarão no `appdata.json`.
 
 ## Menus
 

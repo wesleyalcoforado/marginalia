@@ -150,9 +150,6 @@ fn symbols_and_labels() {
     assert_eq!(menu_label("Inverter", Some("i")), "Inverter (i)");
     assert_eq!(menu_label("Abrir fonte…", Some("cmd-o")), "Abrir fonte…");
     assert_eq!(menu_label("Fechar fonte", None), "Fechar fonte");
-    assert_eq!(notation_readme("cmd-shift-v"), "Cmd-Shift-V");
-    assert_eq!(notation_readme("cmd-backspace"), "Cmd-Backspace");
-    assert_eq!(notation_readme("F"), "`F`");
 }
 
 /// Titulos e rotulos em portugues, com maiuscula so na primeira palavra
@@ -176,139 +173,6 @@ fn titles_and_labels_in_portuguese_and_capitalization_consistent() {
         for p in label.to_lowercase().split(|c: char| !c.is_alphanumeric()) {
             assert!(!english.contains(&p), "{menu} > {label}: {p:?} em ingles");
         }
-    }
-}
-
-/// A primeira coluna das linhas da tabela de teclas do README.
-fn readme_keys() -> Vec<&'static str> {
-    include_str!("../../../../docs/comportamento.md")
-        .lines()
-        .filter(|l| l.starts_with('|'))
-        .filter_map(|l| l.split('|').nth(1))
-        .collect()
-}
-
-/// A tabela de teclas do README lista todo atalho dos menus.
-#[test]
-fn readme_list_whole_shortcut_of_the_menus() {
-    let first = readme_keys();
-    for (menu, label, _, shortcut) in items() {
-        let Some(t) = shortcut else { continue };
-        let n = notation_readme(t);
-        assert!(first.iter().any(|c| c.contains(&n)), "docs/comportamento.md sem {n} ({menu} > {label})");
-    }
-}
-
-/// Como uma tecla aparece na coluna de teclas do README, sem diferenca de
-/// caixa: `` `p` ``, `Esc`, `Cmd-V`; as setas, por `Arrow`/`Setas`.
-fn readme_name(key: &str, cmd: bool) -> String {
-    let name = match key {
-        "up" | "down" | "left" | "right" => "Seta".to_string(),
-        "enter" => "Enter".into(),
-        "escape" => "Esc".into(),
-        "backspace" => "Backspace".into(),
-        "delete" => "Delete".into(),
-        "space" => "espaço".into(),
-        "tab" => "Tab".into(),
-        "home" => "Home".into(),
-        "end" => "End".into(),
-        "pageup" => "PageUp".into(),
-        "pagedown" => "PageDown".into(),
-        k if cmd => k.to_uppercase(),
-        k => format!("`{k}`"),
-    };
-    if cmd { format!("Cmd-{name}") } else { name }
-}
-
-/// Toda tecla que o app trata esta na tabela do README: os `KeyBinding`
-/// ([`SHORTCUTS`]), as teclas simples das views ([`KEYS`]) e, por contexto
-/// (o marcador na coluna de teclas), as teclas das funcoes que as views
-/// chamam: a gaveta em foco, a nota rapida, o seletor de vault, a imagem
-/// (W/A/S/D, grifos) e o dialogo de excluir de vez.
-#[test]
-fn readme_list_all_key_registered() {
-    use crate::focus_state::{self, Focus};
-    let first: Vec<String> = readme_keys().iter().map(|c| c.to_lowercase()).collect();
-    let has = |marker: &str, n: &str| {
-        let (m, n) = (marker.to_lowercase(), n.to_lowercase());
-        first.iter().any(|c| c.contains(&m) && c.contains(&n))
-    };
-    for (t, a, _) in SHORTCUTS {
-        assert!(has("", &notation_readme(t)), "docs/comportamento.md sem o KeyBinding {t} ({a:?})");
-    }
-    let aliases = [("pageup", "PageUp"), ("pagedown", "PageDown")];
-    for (t, a) in KEYS {
-        let n = aliases.iter().find(|(ap, _)| ap == t).map_or_else(|| notation_readme(t), |(_, p)| p.to_string());
-        assert!(has("", &n), "docs/comportamento.md sem a tecla {n} ({a:?})");
-    }
-    let mut candidates: Vec<String> = ('a'..='z').chain('0'..='9').chain("[]{}+-=_/".chars()).map(String::from).collect();
-    candidates.extend(
-        ["up", "down", "left", "right", "enter", "escape", "backspace", "delete", "space", "tab", "home", "end", "pageup", "pagedown"]
-            .map(String::from),
-    );
-    let mut checked = 0;
-    for k in &candidates {
-        for cmd in [false, true] {
-            let n = readme_name(k, cmd);
-            for g in Drawer::ALL {
-                if focus_state::drawer_key(k, Focus::Drawer, Some(g), false, cmd, false, false).is_some() {
-                    assert!(has("gaveta em foco", &n), "docs/comportamento.md sem {n} (gaveta {g:?} em foco)");
-                    checked += 1;
-                }
-            }
-            let arrow = matches!(k.as_str(), "up" | "down" | "left" | "right" | "home" | "end");
-            // Cmd/Option com setas andam pelo texto: estao na descricao da linha "Setas".
-            // Com Cmd so conta o que muda com ele (Cmd-Backspace apaga como Backspace).
-            let quick_note = |cmd| crate::quick_note::key(k, false, cmd, false, false);
-            if !(cmd && (arrow || quick_note(true) == quick_note(false))) {
-                if let Some(t) = quick_note(cmd) {
-                    if t != crate::quick_note::Key::Ignore {
-                        assert!(has("na nota", &n), "docs/comportamento.md sem {n} (na nota)");
-                        checked += 1;
-                    }
-                }
-            }
-            if !cmd {
-                // A caixa numerica de uma barra do painel de ajustes: ↑/↓ (Shift: de 10 em 10).
-                for shift in [false, true] {
-                    if crate::slider::key_step(k, shift).is_some() {
-                        assert!(has("caixa numérica", &n), "docs/comportamento.md sem {n} (caixa numérica)");
-                        if shift {
-                            assert!(has("caixa numérica", "Shift"), "docs/comportamento.md sem Shift (caixa numérica)");
-                        }
-                        checked += 1;
-                    }
-                }
-                if crate::vault_picker::picker_key(k).is_some() {
-                    assert!(has("seletor de vault", &n), "docs/comportamento.md sem {n} (seletor de vault)");
-                    checked += 1;
-                }
-                let pan = focus_state::pan_key(k, Focus::Image, false, false, false, false).is_some();
-                let highlight = focus_state::highlight_key(k, Focus::Image, false, false, false, false, true, true).is_some();
-                if pan || highlight {
-                    assert!(has("imagem em foco", &n), "docs/comportamento.md sem {n} (imagem em foco)");
-                    checked += 1;
-                }
-            }
-        }
-    }
-    assert!(checked > 30, "poucas teclas conferidas: {checked}");
-    // Teclas tratadas direto na view (main_view: `/`; a caixa "Renomear")
-    // e as do dialogo de excluir (`Drawers::deletion_key`, testadas em drawers).
-    for (marker, n) in [
-        ("imagem em foco", "`/`"),
-        ("renomear", "Enter"),
-        ("renomear", "Esc"),
-        ("caixa numérica", "Enter"),
-        ("caixa numérica", "Esc"),
-        ("barra", "duplo clique"),
-        ("confirmação de excluir", "Tab"),
-        ("confirmação de excluir", "Seta"),
-        ("confirmação de excluir", "Enter"),
-        ("confirmação de excluir", "espaço"),
-        ("confirmação de excluir", "Esc"),
-    ] {
-        assert!(has(marker, n), "docs/comportamento.md sem {n} ({marker})");
     }
 }
 
@@ -343,28 +207,6 @@ fn actions_reach() {
             Reach::Text => assert_eq!(*c, Context::Text, "{a:?}"),
             Reach::View => assert_eq!(*c, Context::SoMenu, "{a:?}"),
         }
-    }
-}
-
-/// Como o README escreve o atalho na tabela de teclas: `Cmd-Shift-V`, `` `F` ``, `Seta esquerda`.
-pub fn notation_readme(shortcut: &str) -> String {
-    if with_cmd(shortcut) {
-        return shortcut
-            .split('-')
-            .map(|p| match p {
-                "cmd" => "Cmd".to_string(),
-                "shift" => "Shift".to_string(),
-                "backspace" => "Backspace".to_string(),
-                t => t.to_uppercase(),
-            })
-            .collect::<Vec<_>>()
-            .join("-");
-    }
-    match shortcut {
-        "left" => "Seta esquerda".into(),
-        "right" => "Seta direita".into(),
-        "backspace" => "Backspace".into(),
-        t => format!("`{t}`"),
     }
 }
 
