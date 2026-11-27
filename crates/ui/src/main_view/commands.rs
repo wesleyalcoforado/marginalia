@@ -88,8 +88,7 @@ impl MainView {
         use menus::MenuAction as A;
         match a {
             A::About => self.about(window, cx),
-            // A janela do aviso e a checagem chegam na proxima tarefa do plano.
-            A::CheckUpdates => {}
+            A::CheckUpdates => self.check_updates(true, cx),
             // Sair e do app (`main.rs`): o `on_app_quit` grava a nota e apaga o cache.
             A::Exit => cx.quit(),
             A::OpenSource => self.dialog_open(window, cx),

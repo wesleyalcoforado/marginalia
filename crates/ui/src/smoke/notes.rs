@@ -168,6 +168,7 @@ pub(super) async fn smoke_notes(view_window: WindowHandle<MainView>, cx: &mut As
     smoke_shortcuts_pc(view_window, cx).await?;
     smoke_rotation_highlights(view_window, cx, &v).await?;
     smoke_tools(view_window, cx, &v).await?;
+    smoke_update(view_window, cx).await?;
 
     // Reabrir a primeira nota de outra imagem: volta a imagem, ao enquadramento e destaca o grifo
     view_window.update(cx, |v, w, cx| v.open_note(&p1.id, w, cx)).map_err(|e| e.to_string())??;
