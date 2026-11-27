@@ -3,6 +3,7 @@
 //! eventos; nada aqui conhece janela, menu ou textura.
 
 pub mod schedule_adjustment;
+pub mod update_check;
 pub mod annotate;
 pub mod app_state;
 pub mod tree;

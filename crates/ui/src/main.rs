@@ -23,6 +23,7 @@ mod menus;
 mod quick_note_view;
 mod slider;
 mod about;
+mod update_notice;
 mod splash;
 mod theme;
 mod smoke;
@@ -106,6 +107,7 @@ macro_rules! menu_actions {
 
 menu_actions! {
     About => About,
+    CheckUpdates => CheckUpdates,
     Exit => Exit,
     OpenSource => OpenSource,
     VaultPicker => OpenVault,

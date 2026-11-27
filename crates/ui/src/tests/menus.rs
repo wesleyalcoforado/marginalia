@@ -45,7 +45,7 @@ fn help_has_item_and_key() {
     assert_eq!(item_of(MenuAction::Help), Some(("Ajuda".to_string(), Some("?"))));
     assert_eq!(key_action("?"), Some(MenuAction::Help));
     assert!(available(MenuAction::Help, &State::default()));
-    assert_eq!(MenuAction::ALL.len(), 45);
+    assert_eq!(MenuAction::ALL.len(), 46);
 }
 
 #[test]
@@ -518,4 +518,16 @@ fn tree_pc_puts_exit_and_settings_in_file_and_about_in_help() {
         assert!(!matches!(m.items.first(), Some(ItemDesc::Separator)) && !matches!(m.items.last(), Some(ItemDesc::Separator)), "{}", m.title);
         assert!(!m.items.windows(2).any(|w| matches!(w, [ItemDesc::Separator, ItemDesc::Separator])), "{}", m.title);
     }
+}
+
+#[test]
+fn check_updates_is_in_help_menu_always_available_and_about_stays_last_on_pc() {
+    assert_eq!(MenuAction::CheckUpdates.id(), "check_updates");
+    assert!(MenuAction::ALL.contains(&MenuAction::CheckUpdates));
+    assert!(available(MenuAction::CheckUpdates, &State::default()));
+    let help = menu_ids(tree().last().unwrap());
+    assert!(help.contains(&MenuAction::CheckUpdates.id()));
+    let pc = menu_ids(tree_pc().last().unwrap());
+    assert!(pc.contains(&MenuAction::CheckUpdates.id()));
+    assert_eq!(pc.last(), Some(&MenuAction::About.id()));
 }

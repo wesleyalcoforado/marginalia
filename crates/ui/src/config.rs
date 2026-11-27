@@ -19,6 +19,7 @@ pub enum Id {
     QuickNoteFont,
     PanelWidth,
     ReopenLastSource,
+    UpdateCheck,
 }
 
 /// As larguras prontas do painel lateral: estreito, medio (o padrao) e largo.
@@ -62,6 +63,7 @@ fn choice(label: String, active: bool) -> Choice {
 /// As secoes da tela, com a opcao ativa de cada linha lida de `app_data`.
 pub fn sections(app_data: &AppData) -> Vec<Section> {
     let reopen = app_data.reopen_last_source();
+    let update = app_data.auto_update_check();
     let theme = app_data.theme();
     let rhythm = app_data.quick_note_rhythm();
     let font = app_data.quick_note_font();
@@ -101,12 +103,20 @@ pub fn sections(app_data: &AppData) -> Vec<Section> {
         },
         Section {
             title: t!("config.section.start"),
-            lines: vec![Line {
-                id: Id::ReopenLastSource,
-                title: t!("config.reopen.title"),
-                hint: Some(t!("config.reopen.hint")),
-                options: vec![choice(t!("config.choice.yes"), reopen), choice(t!("config.choice.not"), !reopen)],
-            }],
+            lines: vec![
+                Line {
+                    id: Id::ReopenLastSource,
+                    title: t!("config.reopen.title"),
+                    hint: Some(t!("config.reopen.hint")),
+                    options: vec![choice(t!("config.choice.yes"), reopen), choice(t!("config.choice.not"), !reopen)],
+                },
+                Line {
+                    id: Id::UpdateCheck,
+                    title: t!("config.update.title"),
+                    hint: Some(t!("config.update.hint")),
+                    options: vec![choice(t!("config.choice.yes"), update), choice(t!("config.choice.not"), !update)],
+                },
+            ],
         },
     ]
 }
@@ -180,6 +190,16 @@ pub fn choose(app_data: &mut AppData, id: Id, index: usize) -> bool {
             };
             let changed = app_data.reopen_last_source() != new;
             app_data.set_reopen_last_source(new);
+            changed
+        }
+        Id::UpdateCheck => {
+            let new = match index {
+                0 => true,
+                1 => false,
+                _ => return false,
+            };
+            let changed = app_data.auto_update_check() != new;
+            app_data.set_auto_update_check(new);
             changed
         }
     }

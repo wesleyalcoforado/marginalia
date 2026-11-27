@@ -597,6 +597,8 @@ config.choice.not = Não
 config.section.start = Ao abrir o app
 config.reopen.title = Reabrir a última fonte
 config.reopen.hint = Ao iniciar sem uma fonte indicada, abre a última usada neste vault.
+config.update.title = Avisar sobre versão nova ao abrir
+config.update.hint = O app consulta o GitHub no máximo uma vez por dia. Nada seu é enviado. Em Ajuda, "Buscar atualizações" funciona mesmo desligado.
 config.section.quick_note = Nota rápida
 config.rhythm.title = Salvamento da nota
 config.rhythm.hint = Tempo de espera após a última tecla digitada.
@@ -629,3 +631,17 @@ about.name_developer = Wesley Alcoforado
 about.link = Genealogia do Ceará
 about.right = © {0} {1}. Licença Apache-2.0.
 about.credits = Ícones: Unicons (Iconscout), licença Apache-2.0.
+
+# Aviso de versao nova
+update.title = Atualizações
+update.new.heading = Há uma versão nova do Marginalia
+update.new.versions = Você tem a {0}; a nova é a {1}.
+update.none.heading = Você já está na última versão
+update.none.detail = Versão {0}.
+update.failed.heading = Não foi possível verificar agora
+update.failed.detail = Confira a conexão com a internet e tente de novo mais tarde.
+update.button.download = Baixar
+update.button.later = Agora não
+update.button.skip = Pular esta versão
+update.button.ok = OK
+menu.check_updates = Buscar atualizações…

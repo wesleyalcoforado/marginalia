@@ -44,6 +44,7 @@ mod highlights;
 mod image;
 mod notes;
 mod records;
+mod update;
 
 use crate::*;
 
@@ -64,7 +65,7 @@ use crate::focus_state::Focus;
 /// Teto de espera do smoke por uma carga (abrir a fonte, um quadro).
 const SMOKE_TIMEOUT: Duration = Duration::from_secs(20);
 
-use self::{shortcuts_pc::*, menu_bar::*, input::*, sources::*, drawers_and_menus::*, highlights::*, image::*, notes::*, records::*};
+use self::{shortcuts_pc::*, menu_bar::*, input::*, sources::*, drawers_and_menus::*, highlights::*, image::*, notes::*, records::*, update::*};
 
 /// Espera a view ficar ociosa (sem carga pendente), com fonte, e o
 /// visualizador ter pintado. Pede uma pintura a cada ~200 ms (a janela do smoke

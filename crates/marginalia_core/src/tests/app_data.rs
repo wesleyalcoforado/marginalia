@@ -409,3 +409,44 @@ fn theme_starts_dark_persists_and_restore_back() {
     c.save().unwrap();
     assert!(!std::fs::read_to_string(base.join(FILE)).unwrap().contains("\"tema\""));
 }
+
+#[test]
+fn update_fields_default_and_roundtrip() {
+    let t = tempdir().unwrap();
+    let mut d = AppData::new(t.path().to_path_buf());
+    assert!(d.auto_update_check());
+    assert_eq!(d.last_update_check(), None);
+    assert_eq!(d.skipped_version(), None);
+    d.set_auto_update_check(false);
+    d.set_last_update_check(1_700_000_000);
+    let skipped = crate::update::Version::parse("v0.2.0").unwrap();
+    d.set_skipped_version(Some(skipped));
+    d.save().unwrap();
+    let again = AppData::load(t.path().to_path_buf()).unwrap();
+    assert!(!again.auto_update_check());
+    assert_eq!(again.last_update_check(), Some(1_700_000_000));
+    assert_eq!(again.skipped_version(), Some(skipped));
+}
+
+#[test]
+fn old_file_without_update_fields_opens_with_check_on() {
+    let t = tempdir().unwrap();
+    std::fs::write(t.path().join("appdata.json"), r#"{"version":1}"#).unwrap();
+    let d = AppData::load(t.path().to_path_buf()).unwrap();
+    assert!(d.auto_update_check());
+    assert_eq!(d.skipped_version(), None);
+}
+
+#[test]
+fn restore_settings_turns_check_on_but_keeps_skipped() {
+    let t = tempdir().unwrap();
+    let mut d = AppData::new(t.path().to_path_buf());
+    let skipped = crate::update::Version::parse("0.3.0").unwrap();
+    d.set_auto_update_check(false);
+    d.set_skipped_version(Some(skipped));
+    d.set_last_update_check(5);
+    d.restore_settings();
+    assert!(d.auto_update_check());
+    assert_eq!(d.skipped_version(), Some(skipped));
+    assert_eq!(d.last_update_check(), Some(5));
+}

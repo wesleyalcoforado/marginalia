@@ -12,6 +12,7 @@ pub mod crop;
 pub mod records;
 pub mod rotation;
 pub mod source;
+pub mod update;
 pub mod vault;
 
 pub use error::Error;

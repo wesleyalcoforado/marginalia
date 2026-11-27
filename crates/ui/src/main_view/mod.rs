@@ -92,6 +92,7 @@ mod records;
 mod help_screen;
 mod screen_config;
 mod about_screen;
+mod update_screen;
 mod vault;
 mod widgets;
 
@@ -112,6 +113,9 @@ pub struct MainView {
     collapsed_adjustments: bool,
     /// A janela Sobre (propria do macOS), se aberta; uma so por vez.
     about_window: Option<WindowHandle<about_screen::ViewAbout>>,
+    /// A janela do aviso de versao e se o aviso automatico ja apareceu nesta sessao.
+    update_window: Option<WindowHandle<update_screen::ViewUpdate>>,
+    update_shown: bool,
     /// Tela de ajuda (sobreposta) aberta: `?`, o icone da barra de atividades ou o menu Ajuda.
     open_help: bool,
     /// Menuzinho de cores dos grifos (barra de ferramentas) aberto.
@@ -307,6 +311,8 @@ impl MainView {
             open_adjustments: false,
             collapsed_adjustments: false,
             about_window: None,
+            update_window: None,
+            update_shown: false,
             open_help: false,
             open_colors: false,
             menu: Default::default(),
@@ -363,6 +369,7 @@ impl MainView {
         v.sync(cx);
         v.restore_quick_note(cx);
         v.refresh(cx);
+        v.start_auto_update_check(cx);
         v
     }
 
